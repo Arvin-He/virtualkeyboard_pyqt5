@@ -29,7 +29,8 @@ There are two methods.
 ### Email Me
 Send Your Updated Version On My Email.
 
-[Emial: junhe3209@gmail.com](junhe3209@gmail.com)
+**Email:** 
+- junhe3209@gmail.com
 
 ## License
 Apache License
