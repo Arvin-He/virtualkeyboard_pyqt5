@@ -3,7 +3,7 @@
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
-
+# from PyQt5.QtDBus import QDBusConnection
 import pyautogui
 import sys
 
@@ -50,35 +50,64 @@ board_keys = {
 class KeyButton(QtWidgets.QPushButton):
     def __init__(self, parent=None, name='', width=50, height=50, scale=1):
         super(KeyButton, self).__init__(parent)
-        self.setText(name)
+        self.setFocusPolicy(QtCore.Qt.NoFocus)
+        # self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus)
         self.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        self.setText(name)
+        
         # self.width = width*scale
         # self.height = height
         # self.setMinimumSize(self.width, self.height)
         # self.setFixedSize(self.width, self.height)
         # self.setFixedSize(62, 62)
         self.clicked.connect(self.button_clicked)
+        self.pressed.connect(self.button_pressed)
+        self.released.connect(self.button_released)
+
+    # def focusInEvent(self, event):
+    #     return
     
     def button_clicked(self):
+        # self.clearFocus()
         print(self.text().lower())
-        pyautogui.press(self.text().lower())
-        # return self.text().lower()
+        pyautogui.press(str(self.text().lower()))
 
-    def button_press(self):
-        pass
-        # key1 = 
-        # pyautogui.hotkey()
+    def button_pressed(self):
+        # self.clearFocus()
+        print(self.text().lower())
+        pyautogui.keyDown(self.text().lower())
+
+    def button_released(self):
+        # self.clearFocus()
+        print(self.text().lower())
+        pyautogui.keyUp(self.text().lower())
 
 
 class Keyboard(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(Keyboard, self).__init__(parent)
+        self.setFocusPolicy(QtCore.Qt.NoFocus)
+        # self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus | QtCore.Qt.Tool | QtCore.Qt.WindowStaysOnTopHint)
+        self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus | QtCore.Qt.Tool |
+                            QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
+        
+        # self.clearFocus()
+        # self.setAttribute(QtCore.Qt.WA_ShowWithoutActivating)
         self.keyboardWidth = 900
-        self.keyboardHeight = 400
+        self.keyboardHeight = 350
         self.initUI()
         self.show()
         # self.hbox.setContentsMargins(10, 10, 10, 10)
         # self.hbox.setSpacing(6)
+
+    # def focusInEvent(self, event):
+    #     return
+        # super(_ParameterSpinBox, self).focusInEvent(event)
+        # self._originalValue = self.value()
+    # def closeEvent(self, event):
+    #     print("xxxxxxx")
+    #     self.close()
+    #     self.des
 
     def initUI(self):
         self.createLayout()
@@ -244,10 +273,13 @@ class Keyboard(QtWidgets.QWidget):
         pyautogui.press(event)
 
 
-
 def main():
     app = QtWidgets.QApplication(sys.argv)
+    # if not QDBusConnection.sessionBus().registerService("com.kdab.inputmethod"):
     key_board = Keyboard()
+    # if not QDBusConnection.sessionBus().registerObject("/VirtualKeyboard", &keyboard, QDBusConnection::ExportAllSignals | QDBusConnection::ExportAllSlots)) {
+        # qFatal("Unable to register object at DBus");
+        # return 1;
     sys.exit(app.exec_())
 
 if __name__ == '__main__':
