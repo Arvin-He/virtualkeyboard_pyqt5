@@ -4,11 +4,9 @@ from PyQt5 import QtGui
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
 # from PyQt5.QtDBus import QDBusConnection
+# from PyQt5.QtDBus import QDBusConnection, QDBusInterface
 import pyautogui
 import sys
-import ctypes
-import win32con
-
 
 # ========== Configurations ====================
 BUTTON_BACKGROUND = "black"
@@ -53,9 +51,7 @@ board_keys = {
 class KeyButton(QtWidgets.QPushButton):
     def __init__(self, parent=None, name='', width=50, height=50, scale=1):
         super(KeyButton, self).__init__(parent)
-        self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus | QtCore.Qt.Tool |
-                            QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
-        # self.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.setFocusPolicy(QtCore.Qt.NoFocus)
         # self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus)
         self.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         self.setText(name)
@@ -66,24 +62,15 @@ class KeyButton(QtWidgets.QPushButton):
         # self.setFixedSize(self.width, self.height)
         # self.setFixedSize(62, 62)
         self.clicked.connect(self.button_clicked)
-        # self.pressed.connect(self.button_pressed)
-        # self.released.connect(self.button_released)
+        self.pressed.connect(self.button_pressed)
+        self.released.connect(self.button_released)
 
-    def focusInEvent(self, event):
-        print("xxxxx")
-        # return
+    # def focusInEvent(self, event):
+    #     return
     
     def button_clicked(self):
-        # self.releaseMouse()
-        if self.hasFocus():
-            print("has focus")
-        else:
-            print("no focus")
         # self.clearFocus()
-        # self.setAttribute(QtCore.Qt.WA_ShowWithoutActivating)
-        # self.setFocusPolicy(QtCore.Qt.NoFocus)
         print(self.text().lower())
-        pyautogui.typewrite(str(self.text().lower()))
         pyautogui.press(str(self.text().lower()))
 
     def button_pressed(self):
@@ -100,23 +87,17 @@ class KeyButton(QtWidgets.QPushButton):
 class Keyboard(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(Keyboard, self).__init__(parent)
-        # self.setFocusPolicy(QtCore.Qt.NoFocus)
-        # self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus| QtCore.Qt.Tool | QtCore.Qt.WindowStaysOnTopHint)
-        # QtCore.Qt.Tool 会导致关闭窗口时,在进程中不退出问题
+        self.setFocusPolicy(QtCore.Qt.NoFocus)
+        # self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus | QtCore.Qt.Tool | QtCore.Qt.WindowStaysOnTopHint)
         self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus | QtCore.Qt.Tool |
                             QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
-        # self.setFocusPolicy(QtCore.Qt.NoFocus)
         
         # self.clearFocus()
-        self.setAttribute(QtCore.Qt.WA_ShowWithoutActivating)
+        # self.setAttribute(QtCore.Qt.WA_ShowWithoutActivating)
         self.keyboardWidth = 900
         self.keyboardHeight = 350
         self.initUI()
         self.show()
-        self.hwnd = ctypes.windll.user32.GetActiveWindow()
-        print("self.hwnd = {}".format(self.hwnd))
-        ctypes.windll.user32.SetWindowLongW(self.hwnd, -20, 0x08000000)
-
         # self.hbox.setContentsMargins(10, 10, 10, 10)
         # self.hbox.setSpacing(6)
 
@@ -293,49 +274,10 @@ class Keyboard(QtWidgets.QWidget):
         pyautogui.press(event)
 
 
-def get_windows():
-    '''Returns windows in z-order (top first)'''
-    user32 = ctypes.windll.user32
-    lst = []
-    top = user32.GetTopWindow(None)
-    if not top:
-        return lst
-    lst.append(top)
-    # while True:
-    #     next = user32.GetWindow(lst[-1], win32con.GW_HWNDNEXT)
-    #     if not next:
-    #         break
-    #     lst.append(next)
-    return lst
-
-
 def main():
     app = QtWidgets.QApplication(sys.argv)
     # if not QDBusConnection.sessionBus().registerService("com.kdab.inputmethod"):
     key_board = Keyboard()
-    # top_wnds = get_windows()
-    # for wnd in top_wnds:
-    #     print(wnd)
-    hwnd1 = ctypes.windll.user32.GetTopWindow(None)
-    print("hwnd1=", hwnd1)
-    hwnd = ctypes.windll.user32.GetActiveWindow()
-    print("hwnd=", hwnd)
-
-    # cb = ctypes.windll.user32.GetWindowTextLengthW(top_wnds[0]) + 1
-    # title = ctypes.create_unicode_buffer(cb)
-    # ctypes.windll.user32.GetWindowTextW(top_wnds[0], title, cb)
-
-    # print("title = ", title)
-    # ctypes.windll.user32.SetWindowTextW(top_wnds[0], "123")
-    # GetWindowText = ctypes.windll.user32.GetWindowTextW
-    # GetWindowTextLength = ctypes.windll.user32.GetWindowTextLengthW
-    # length = GetWindowTextLength(hwnd)
-    # buff = ctypes.create_unicode_buffer(length + 1)
-    # GetWindowText(hwnd, buff, length + 1)
-    # print(buff.value)
-    # wnd = win32ui.GetForegroundWindow()
-    # print(wnd.GetWindowText())
-    ctypes.windll.user32.SetWindowLongW(hwnd1, -20, 0x08000000)
     # if not QDBusConnection.sessionBus().registerObject("/VirtualKeyboard", &keyboard, QDBusConnection::ExportAllSignals | QDBusConnection::ExportAllSlots)) {
         # qFatal("Unable to register object at DBus");
         # return 1;
