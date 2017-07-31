@@ -1,23 +1,12 @@
 # /user/bin/python3
 # -*- coding:utf-8 -*-
+import sys
+import ctypes
+import pyautogui
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
-# from PyQt5.QtDBus import QDBusConnection
-import pyautogui
-import sys
-import ctypes
-import win32con
 
-
-# ========== Configurations ====================
-BUTTON_BACKGROUND = "black"
-MAIN_FRAME_BACKGROUND = "cornflowerblue"
-BUTTON_LOOK = "flat"  # flat, groove, raised, ridge, solid, or sunken
-TOP_BAR_TITLE = "Python Virtual KeyBoard."
-TOPBAR_BACKGROUND = "skyblue"
-TRANSPARENCY = 0.7
-FONT_COLOR = "white"
 
 show_function_keys = True
 show_character_keys = True
@@ -25,12 +14,17 @@ show_system_editing_navigation_keys = False
 show_numeric_keys = False
 
 board_keys = {
-    "function_keys": ['esc', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'],
+    "function_keys": ['esc', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6',
+                      'F7', 'F8', 'F9', 'F10', 'F11', 'F12'],
     "character_keys": [
-        ['~\n`', '!\n1', '@\n2', '#\n3', '$\n4', '%\n5', '^\n6', '&&\n7', '*\n8', '(\n9', ')\n0', '_\n-', '+\n=', 'backspace'],
-        ['tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '{\n[', '}\n]', '|\n\\'],
-        ['capslock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ':\n;', '"\n\'', 'enter'],
-        ['shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '<\n,', '>\n.', '?\n/', 'shift'],
+        ['~\n`', '!\n1', '@\n2', '#\n3', '$\n4', '%\n5', '^\n6', '&&\n7',
+            '*\n8', '(\n9', ')\n0', '_\n-', '+\n=', 'backspace'],
+        ['tab', 'q', 'w', 'e', 'r', 't', 'y', 'u',
+            'i', 'o', 'p', '{\n[', '}\n]', '|\n\\'],
+        ['capslock', 'a', 's', 'd', 'f', 'g', 'h',
+            'j', 'k', 'l', ':\n;', '"\n\'', 'enter'],
+        ['shift', 'z', 'x', 'c', 'v', 'b', 'n',
+            'm', '<\n,', '>\n.', '?\n/', 'shift'],
         ['ctrl', 'win', 'alt', 'space', 'alt', 'win', '[=]', 'ctrl']],
     "system_keys": ['printscreen', 'scrolllock', 'pause'],
     "editing_keys": ['insert', 'home', 'pageup', 'delete', 'end', 'pagedown'],
@@ -39,117 +33,67 @@ board_keys = {
 }
 
 
-# class KeyButton(QtWidgets.QPushButton):
-#     def __init__(self, parent=None, name='', width=50, height=50, scale=1):
-#         super(KeyButton, self).__init__(parent)
-#         self.setText(name)
-#         # self.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-#         self.width = width*scale
-#         self.height = height
-#         # self.setMinimumSize(self.width, self.height)
-#         self.setFixedSize(self.width, self.height)
-#         # self.setFixedSize(62, 62)
-
 class KeyButton(QtWidgets.QPushButton):
     def __init__(self, parent=None, name='', width=50, height=50, scale=1):
         super(KeyButton, self).__init__(parent)
-        self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus | QtCore.Qt.Tool |
-                            QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
-        # self.setFocusPolicy(QtCore.Qt.NoFocus)
-        # self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus)
-        self.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        self.setText(name)
-        
-        # self.width = width*scale
-        # self.height = height
-        # self.setMinimumSize(self.width, self.height)
-        # self.setFixedSize(self.width, self.height)
-        # self.setFixedSize(62, 62)
-        self.clicked.connect(self.button_clicked)
-        # self.pressed.connect(self.button_pressed)
-        # self.released.connect(self.button_released)
-
-    def focusInEvent(self, event):
-        print("xxxxx")
-        # return
-    
-    def button_clicked(self):
-        # self.releaseMouse()
-        if self.hasFocus():
-            print("has focus")
+        if sys.platform == "win32":
+            self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus |
+                                QtCore.Qt.Tool |
+                                QtCore.Qt.FramelessWindowHint |
+                                QtCore.Qt.WindowStaysOnTopHint)
         else:
-            print("no focus")
-        # self.clearFocus()
-        # self.setAttribute(QtCore.Qt.WA_ShowWithoutActivating)
-        # self.setFocusPolicy(QtCore.Qt.NoFocus)
-        print(self.text().lower())
-        pyautogui.typewrite(str(self.text().lower()))
-        pyautogui.press(str(self.text().lower()))
+            self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus |
+                                QtCore.Qt.Tool |
+                                QtCore.Qt.FramelessWindowHint |
+                                QtCore.Qt.WindowStaysOnTopHint |
+                                QtCore.Qt.X11BypassWindowManagerHint)
+
+        self.setSizePolicy(QtWidgets.QSizePolicy.Expanding,
+                           QtWidgets.QSizePolicy.Expanding)
+        self.setText(name)
+        self.clicked.connect(self.button_clicked)
+
+    def button_clicked(self):
+        key_text = self.text().lower()
+        if '\n' in key_text:
+            key = key_text[key_text.find('\n') + 1:]
+            pyautogui.press(key)
+        else:
+            pyautogui.press(key_text)
 
     def button_pressed(self):
-        # self.clearFocus()
-        print(self.text().lower())
         pyautogui.keyDown(self.text().lower())
 
     def button_released(self):
-        # self.clearFocus()
-        print(self.text().lower())
         pyautogui.keyUp(self.text().lower())
 
 
 class Keyboard(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(Keyboard, self).__init__(parent)
-        # self.setFocusPolicy(QtCore.Qt.NoFocus)
-        # self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus| QtCore.Qt.Tool | QtCore.Qt.WindowStaysOnTopHint)
-        # QtCore.Qt.Tool 会导致关闭窗口时,在进程中不退出问题
-        self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus | QtCore.Qt.Tool |
-                            QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
-        # self.setFocusPolicy(QtCore.Qt.NoFocus)
-        
-        # self.clearFocus()
-        self.setAttribute(QtCore.Qt.WA_ShowWithoutActivating)
+        if sys.platform == "win32":
+            self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus |
+                                QtCore.Qt.Tool |
+                                QtCore.Qt.FramelessWindowHint |
+                                QtCore.Qt.WindowStaysOnTopHint)
+        else:
+            self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus |
+                                QtCore.Qt.Tool |
+                                QtCore.Qt.FramelessWindowHint |
+                                QtCore.Qt.WindowStaysOnTopHint |
+                                QtCore.Qt.X11BypassWindowManagerHint)
         self.keyboardWidth = 900
         self.keyboardHeight = 350
         self.initUI()
         self.show()
-        self.hwnd = ctypes.windll.user32.GetActiveWindow()
-        print("self.hwnd = {}".format(self.hwnd))
-        ctypes.windll.user32.SetWindowLongW(self.hwnd, -20, 0x08000000)
-
-        # self.hbox.setContentsMargins(10, 10, 10, 10)
-        # self.hbox.setSpacing(6)
-
-    # def focusInEvent(self, event):
-    #     return
-        # super(_ParameterSpinBox, self).focusInEvent(event)
-        # self._originalValue = self.value()
-    # def closeEvent(self, event):
-    #     print("xxxxxxx")
-    #     self.close()
-    #     self.des
 
     def initUI(self):
         self.createLayout()
         self.createKeyButtons()
-        # self.setGeometry(100, 100, 900, 400)
         self.setFixedSize(self.keyboardWidth, self.keyboardHeight)
-        # self.calButtonSize()
-
-    def calButtonSize(self):
-        if show_system_editing_navigation_keys and not show_numeric_keys:
-            self.keyNuminRow = 18
-        elif show_system_editing_navigation_keys and  show_numeric_keys:
-            self.keyNuminRow = 22
-        else:
-            self.keyNuminRow = 15
-        if not show_function_keys:
-            self.keyNuminCol = 5
-        else:
-            self.keyNuminCol = 6
-        self.keyBtnWidth = (self.keyboardWidth-self.margin*2-self.spaceing*(self.keyNuminRow-1))/self.keyNuminRow
-        self.keyBtnHeight = (self.keyboardHeight-self.margin*2-self.spaceing*(self.keyNuminCol-1))/self.keyNuminCol
-        print(self.keyBtnWidth, self.keyBtnHeight)
+        if not sys.platform == "win32":
+            self.setGeometry(0, 0, 752, self.keyboardWidth,
+                             self.keyboardHeight)
 
     def createLayout(self):
         self.hbox = QtWidgets.QHBoxLayout()
@@ -196,7 +140,6 @@ class Keyboard(QtWidgets.QWidget):
             self.functionBtnGroup = QtWidgets.QButtonGroup()
             for index, key_name in enumerate(board_keys['function_keys']):
                 button = KeyButton(name=key_name.capitalize())
-                # button = KeyButton(name=key_name.capitalize(), width=self.keyBtnWidth, height=self.keyBtnHeight)
                 self.functionBtnGroup.addButton(button)
                 self.grid0.addWidget(button, 0, index)
 
@@ -205,39 +148,36 @@ class Keyboard(QtWidgets.QWidget):
         for index, key_name in enumerate(board_keys['character_keys'][0]):
             if key_name == "backspace":
                 button = KeyButton(name=key_name.capitalize())
-                # button = KeyButton(name=key_name.capitalize(), width=self.keyBtnWidth, height=self.keyBtnHeight, scale=1.5)
                 self.grid1.addWidget(button, 0, index, 1, 5)
-                self.rowOneBtnGroup.addButton(button)    
+                self.rowOneBtnGroup.addButton(button)
             else:
                 button = KeyButton(name=key_name.capitalize())
-                # button = KeyButton(name=key_name.capitalize(), width=self.keyBtnWidth, height=self.keyBtnHeight)
                 self.grid1.addWidget(button, 0, index)
                 self.rowOneBtnGroup.addButton(button)
-                
+
         self.rowTwoBtnGroup = QtWidgets.QButtonGroup()
         for index, key_name in enumerate(board_keys['character_keys'][1]):
-                button = KeyButton(name=key_name.capitalize())
-                self.rowOneBtnGroup.addButton(button)
-                self.grid2.addWidget(button, 0, index)
+            button = KeyButton(name=key_name.capitalize())
+            self.rowOneBtnGroup.addButton(button)
+            self.grid2.addWidget(button, 0, index)
         self.rowThreeBtnGroup = QtWidgets.QButtonGroup()
         for index, key_name in enumerate(board_keys['character_keys'][2]):
-                button = KeyButton(name=key_name.capitalize())
-                self.rowOneBtnGroup.addButton(button)
-                self.grid3.addWidget(button, 0, index)
+            button = KeyButton(name=key_name.capitalize())
+            self.rowOneBtnGroup.addButton(button)
+            self.grid3.addWidget(button, 0, index)
         self.rowFourBtnGroup = QtWidgets.QButtonGroup()
         for index, key_name in enumerate(board_keys['character_keys'][3]):
-                button = KeyButton(name=key_name.capitalize())
-                self.rowOneBtnGroup.addButton(button)
-                self.grid4.addWidget(button, 0, index)
+            button = KeyButton(name=key_name.capitalize())
+            self.rowOneBtnGroup.addButton(button)
+            self.grid4.addWidget(button, 0, index)
         self.rowFiveBtnGroup = QtWidgets.QButtonGroup()
         for index, key_name in enumerate(board_keys['character_keys'][4]):
-                button = KeyButton(name=key_name.capitalize())
-                self.rowOneBtnGroup.addButton(button)
-                if key_name == "space":
-                    # print(button.width())
-                    button.setFixedWidth(300)
-                self.grid5.addWidget(button, 0, index)
-        
+            button = KeyButton(name=key_name.capitalize())
+            self.rowOneBtnGroup.addButton(button)
+            if key_name == "space":
+                button.setFixedWidth(200)
+            self.grid5.addWidget(button, 0, index)
+
     def createSysEditNavigationButtons(self):
         if hasattr(self, 'vbox2'):
             self.systemBtnGroup = QtWidgets.QButtonGroup()
@@ -252,15 +192,16 @@ class Keyboard(QtWidgets.QWidget):
                 if index < 3:
                     self.sysEditNavigateGrid.addWidget(button, 1, index)
                 else:
-                    self.sysEditNavigateGrid.addWidget(button, 2, index-3)
+                    self.sysEditNavigateGrid.addWidget(button, 2, index - 3)
             self.navigationBtnGroup = QtWidgets.QButtonGroup()
             for index, key_name in enumerate(board_keys['navigation_keys']):
                 button = KeyButton(name=key_name.capitalize())
                 self.navigationBtnGroup.addButton(button)
                 if index == 0:
-                    self.sysEditNavigateGrid.addWidget(button, 3, index, 1, 3, QtCore.Qt.AlignHCenter)
+                    self.sysEditNavigateGrid.addWidget(
+                        button, 3, index, 1, 3, QtCore.Qt.AlignHCenter)
                 else:
-                    self.sysEditNavigateGrid.addWidget(button, 4, index-1)
+                    self.sysEditNavigateGrid.addWidget(button, 4, index - 1)
 
     def createNumericButtons(self):
         if hasattr(self, 'vbox3'):
@@ -272,74 +213,32 @@ class Keyboard(QtWidgets.QWidget):
                     self.numericGrid.addWidget(button, 0, index)
                 elif index in range(4, 8):
                     if index == 7:
-                        self.numericGrid.addWidget(button, 1, index-4, 2, 1)
+                        self.numericGrid.addWidget(button, 1, index - 4, 2, 1)
                     else:
-                        self.numericGrid.addWidget(button, 1, index-4)
+                        self.numericGrid.addWidget(button, 1, index - 4)
                 elif index in range(8, 11):
-                    self.numericGrid.addWidget(button, 2, index-8)
+                    self.numericGrid.addWidget(button, 2, index - 8)
                 elif index in range(11, 15):
                     if index == 14:
-                        self.numericGrid.addWidget(button, 3, index-11, 2, 1)
+                        self.numericGrid.addWidget(button, 3, index - 11, 2, 1)
                     else:
-                        self.numericGrid.addWidget(button, 3, index-11)
+                        self.numericGrid.addWidget(button, 3, index - 11)
                 elif index in range(15, 17):
                     if index == 15:
-                        self.numericGrid.addWidget(button, 4, index-15, 1, 2, QtCore.Qt.AlignHCenter)
+                        self.numericGrid.addWidget(
+                            button, 4, index - 15, 1, 2, QtCore.Qt.AlignHCenter)
                     else:
                         self.numericGrid.addWidget(button, 4, 2)
-        
-    def keyboardEvent(self, event):
-        print("xxxx")
-        pyautogui.press(event)
-
-
-def get_windows():
-    '''Returns windows in z-order (top first)'''
-    user32 = ctypes.windll.user32
-    lst = []
-    top = user32.GetTopWindow(None)
-    if not top:
-        return lst
-    lst.append(top)
-    # while True:
-    #     next = user32.GetWindow(lst[-1], win32con.GW_HWNDNEXT)
-    #     if not next:
-    #         break
-    #     lst.append(next)
-    return lst
 
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    # if not QDBusConnection.sessionBus().registerService("com.kdab.inputmethod"):
     key_board = Keyboard()
-    # top_wnds = get_windows()
-    # for wnd in top_wnds:
-    #     print(wnd)
-    hwnd1 = ctypes.windll.user32.GetTopWindow(None)
-    print("hwnd1=", hwnd1)
-    hwnd = ctypes.windll.user32.GetActiveWindow()
-    print("hwnd=", hwnd)
-
-    # cb = ctypes.windll.user32.GetWindowTextLengthW(top_wnds[0]) + 1
-    # title = ctypes.create_unicode_buffer(cb)
-    # ctypes.windll.user32.GetWindowTextW(top_wnds[0], title, cb)
-
-    # print("title = ", title)
-    # ctypes.windll.user32.SetWindowTextW(top_wnds[0], "123")
-    # GetWindowText = ctypes.windll.user32.GetWindowTextW
-    # GetWindowTextLength = ctypes.windll.user32.GetWindowTextLengthW
-    # length = GetWindowTextLength(hwnd)
-    # buff = ctypes.create_unicode_buffer(length + 1)
-    # GetWindowText(hwnd, buff, length + 1)
-    # print(buff.value)
-    # wnd = win32ui.GetForegroundWindow()
-    # print(wnd.GetWindowText())
-    ctypes.windll.user32.SetWindowLongW(hwnd1, -20, 0x08000000)
-    # if not QDBusConnection.sessionBus().registerObject("/VirtualKeyboard", &keyboard, QDBusConnection::ExportAllSignals | QDBusConnection::ExportAllSlots)) {
-        # qFatal("Unable to register object at DBus");
-        # return 1;
+    if sys.platform == "win32":
+        ctypes.windll.user32.SetWindowLongW(
+            int(key_board.winId()), -20, 0x08000000)
     sys.exit(app.exec_())
+
 
 if __name__ == '__main__':
     main()
