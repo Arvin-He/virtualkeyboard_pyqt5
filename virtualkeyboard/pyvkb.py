@@ -1,12 +1,16 @@
-# /user/bin/python3
 # -*- coding:utf-8 -*-
+import os
 import sys
-import ctypes
 import pyautogui
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
+import utils
+if sys.platform == "win32":
+    import ctypes
 
+_inipath = os.path.abspath('virtualkeyboard.ini')
+print(_inipath)
 
 show_function_keys = True
 show_character_keys = True
@@ -36,6 +40,7 @@ board_keys = {
 class KeyButton(QtWidgets.QPushButton):
     shift_flag = False
     capslock_flag = False
+
     def __init__(self, parent=None, name='', width=50, height=50, scale=1):
         super(KeyButton, self).__init__(parent)
         if sys.platform == "win32":
@@ -107,18 +112,22 @@ class Keyboard(QtWidgets.QWidget):
                                 QtCore.Qt.FramelessWindowHint |
                                 QtCore.Qt.WindowStaysOnTopHint |
                                 QtCore.Qt.X11BypassWindowManagerHint)
+        _ini = utils.loadConfig(_inipath)
+        print(_ini['geometry']['width'])
         self.keyboardWidth = 900
         self.keyboardHeight = 350
+        # self.keyboardWidth = int(self._ini['geometroy']['width'])
+        # self.keyboardHeight = int(self._ini['geometroy']['height'])
         self.initUI()
-        self.show()
+        # self.show()
 
     def initUI(self):
         self.createLayout()
         self.createKeyButtons()
         self.setFixedSize(self.keyboardWidth, self.keyboardHeight)
-        if not sys.platform == "win32":
-            self.setGeometry(0, 0, 752, self.keyboardWidth,
-                             self.keyboardHeight)
+        # if not sys.platform == "win32":
+            # self.setGeometry(0, 752, self.keyboardWidth,
+                            #  self.keyboardHeight)
 
     def createLayout(self):
         self.hbox = QtWidgets.QHBoxLayout()
@@ -254,16 +263,3 @@ class Keyboard(QtWidgets.QWidget):
                             button, 4, index - 15, 1, 2, QtCore.Qt.AlignHCenter)
                     else:
                         self.numericGrid.addWidget(button, 4, 2)
-
-
-def main():
-    app = QtWidgets.QApplication(sys.argv)
-    key_board = Keyboard()
-    if sys.platform == "win32":
-        ctypes.windll.user32.SetWindowLongW(
-            int(key_board.winId()), -20, 0x08000000)
-    sys.exit(app.exec_())
-
-
-if __name__ == '__main__':
-    main()
