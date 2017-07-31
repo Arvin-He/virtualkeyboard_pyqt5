@@ -34,6 +34,8 @@ board_keys = {
 
 
 class KeyButton(QtWidgets.QPushButton):
+    shift_flag = False
+    capslock_flag = False
     def __init__(self, parent=None, name='', width=50, height=50, scale=1):
         super(KeyButton, self).__init__(parent)
         if sys.platform == "win32":
@@ -55,8 +57,31 @@ class KeyButton(QtWidgets.QPushButton):
 
     def button_clicked(self):
         key_text = self.text().lower()
+        if key_text == 'capslock':
+            if KeyButton.capslock_flag is True:
+                KeyButton.capslock_flag = False
+                self.setStyleSheet('''background-color: rgb(192,192,192);
+                                    color: black''')
+            else:
+                KeyButton.capslock_flag = True
+                self.setStyleSheet('''background-color: rgb(10,206,10);
+                                   color:white''')
+                
+        if key_text == 'shift':
+            if KeyButton.shift_flag is True:
+                KeyButton.shift_flag = False
+                self.setStyleSheet('''background-color: rgb(192,192,192);
+                                    color: black''')
+            else:
+                KeyButton.shift_flag = True
+                self.setStyleSheet('''background-color: rgb(10,206,10);
+                                   color:white''')
+
         if '\n' in key_text:
-            key = key_text[key_text.find('\n') + 1:]
+            if not KeyButton.shift_flag:
+                key = key_text[key_text.find('\n') + 1:]
+            else:
+                key = key_text[0:key_text.find('\n')]
             pyautogui.press(key)
         else:
             pyautogui.press(key_text)
