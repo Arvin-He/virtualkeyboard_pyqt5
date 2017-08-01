@@ -12,23 +12,31 @@ def main():
     app = QtWidgets.QApplication(sys.argv)
     key_board = Keyboard()
     control_panel = ControlPanel()
-    key_board.setGeometry(100, 100, key_board.keyboardWidth,
+    key_board.setGeometry(int(key_board._ini['geometry']['left_on_win32']),
+                          int(key_board._ini['geometry']['top_on_win32']),
+                          key_board.keyboardWidth,
                           key_board.keyboardHeight)
     key_board.show()
-    
+
     if sys.platform == "win32":
         # 等窗口显示以后再设置
         ctypes.windll.user32.SetWindowLongW(
             int(key_board.winId()), -20, 0x08000000)
     else:
-        key_board.setGeometry(0, 752, key_board.keyboardWidth,
+        key_board.setGeometry(int(key_board._ini['geometry']['left']),
+                              int(key_board._ini['geometry']['top']),
+                              key_board.keyboardWidth,
                               key_board.keyboardHeight)
 
-    control_panel.setGeometry(100,
-                              102+key_board.keyboardHeight,
+    control_panel.setGeometry(int(key_board._ini['geometry']['left_on_win32']),
+                              int(key_board._ini['geometry']['top_on_win32']
+                                  ) + 2 + key_board.keyboardHeight,
                               control_panel.panelWidth,
                               control_panel.panelHeight)
     control_panel.show()
+    # if key_board.closeAllWindow is True:
+    #     key_board.close()
+    #     control_panel.close()
     sys.exit(app.exec_())
 
 

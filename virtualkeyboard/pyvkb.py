@@ -9,9 +9,7 @@ import utils
 if sys.platform == "win32":
     import ctypes
 
-_inipath = os.path.abspath('virtualkeyboard.ini')
-print(_inipath)
-
+_inipath = os.path.abspath('ini/virtualkeyboard.ini')
 show_function_keys = True
 show_character_keys = True
 show_system_editing_navigation_keys = False
@@ -19,7 +17,7 @@ show_numeric_keys = False
 
 board_keys = {
     "function_keys": ['esc', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6',
-                      'F7', 'F8', 'F9', 'F10', 'F11', 'F12'],
+                      'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'close'],
     "character_keys": [
         ['~\n`', '!\n1', '@\n2', '#\n3', '$\n4', '%\n5', '^\n6', '&&\n7',
             '*\n8', '(\n9', ')\n0', '_\n-', '+\n=', 'backspace'],
@@ -112,22 +110,17 @@ class Keyboard(QtWidgets.QWidget):
                                 QtCore.Qt.FramelessWindowHint |
                                 QtCore.Qt.WindowStaysOnTopHint |
                                 QtCore.Qt.X11BypassWindowManagerHint)
-        _ini = utils.loadConfig(_inipath)
-        print(_ini['geometry']['width'])
-        self.keyboardWidth = 900
-        self.keyboardHeight = 350
-        # self.keyboardWidth = int(self._ini['geometroy']['width'])
-        # self.keyboardHeight = int(self._ini['geometroy']['height'])
+        self._ini = utils.loadConfig(_inipath)
+        self.keyboardWidth = int(self._ini['geometry']['width'])
+        self.keyboardHeight = int(self._ini['geometry']['height'])
         self.initUI()
-        # self.show()
 
     def initUI(self):
         self.createLayout()
         self.createKeyButtons()
         self.setFixedSize(self.keyboardWidth, self.keyboardHeight)
-        # if not sys.platform == "win32":
-            # self.setGeometry(0, 752, self.keyboardWidth,
-                            #  self.keyboardHeight)
+        # self.closeAllWindow = False
+        self.functionBtnGroup.buttons()[13].clicked.connect(self.closeWindow)
 
     def createLayout(self):
         self.hbox = QtWidgets.QHBoxLayout()
@@ -263,3 +256,9 @@ class Keyboard(QtWidgets.QWidget):
                             button, 4, index - 15, 1, 2, QtCore.Qt.AlignHCenter)
                     else:
                         self.numericGrid.addWidget(button, 4, 2)
+    
+    def closeWindow(self):
+        self.close()
+        # self.closeAllWindow = True
+
+   
