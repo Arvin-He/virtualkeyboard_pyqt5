@@ -1,16 +1,17 @@
 # -*- coding:utf-8 -*-
 import os
 import sys
+import json
 import math
 import logging
-# from PyQt5 import uic
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
 import utils
 from punggol_rpc import punggol_eval, punggol_exec
 
-_inipath = os.path.abspath('ini/ctrlpanel.ini')
+
+_configpath = os.path.abspath('ini/ctrlpanel.json')
 
 
 class PanelButton(QtWidgets.QPushButton):
@@ -40,10 +41,12 @@ class ControlPanel(QtWidgets.QWidget):
                                 QtCore.Qt.WindowStaysOnTopHint |
                                 QtCore.Qt.X11BypassWindowManagerHint)
 
-        self._ini = utils.loadConfig(_inipath)
-        self.panelWidth = int(self._ini['geometry']['width'])
-        self.panelHeight = int(self._ini['geometry']['height'])
-        # uic.loadUi(os.path.join(os.path.dirname(__file__), "res/ctrlpanel.ui"), self)
+        with open(_configpath, 'r', encoding='utf-8') as f:
+            self._config = json.load(f)
+
+        self.panelWidth = self._config['geometry']['width']
+        self.panelHeight = self._config['geometry']['height']
+
         self.initUI()
         self.spindleCtrlBtnGroup.buttons()[0].clicked.connect(
             self.on_spindleRun)
@@ -55,8 +58,8 @@ class ControlPanel(QtWidgets.QWidget):
             self.on_switchCSAxis)
         self.spindleCtrlBtnGroup.buttons()[4].clicked.connect(
             self.on_spindleStop)
-        self.machineCtrlBtnGroup.buttons()[7].clicked.connect(
-            lambda: self.close())
+        # self.machineCtrlBtnGroup.buttons()[7].clicked.connect(
+            # lambda: self.close())
 
     def initUI(self):
         self.setFixedSize(self.panelWidth, self.panelHeight)
@@ -65,22 +68,23 @@ class ControlPanel(QtWidgets.QWidget):
 
     def createLayout(self):
         self.hbox = QtWidgets.QHBoxLayout()
-        if 'spindelCtrl' in self._ini.sections():
+        # if 'spindelCtrl' in self._ini.sections():
+        if 'spindelCtrl' in self._config.keys():
             self.grid1 = QtWidgets.QGridLayout()
             self.groupBox1 = QtWidgets.QGroupBox('spindelCtrl')
             self.groupBox1.setLayout(self.grid1)
             self.hbox.addWidget(self.groupBox1)
-        if 'toolCtrl' in self._ini.sections():
+        if 'toolCtrl' in self._config.keys():
             self.grid2 = QtWidgets.QGridLayout()
             self.groupBox2 = QtWidgets.QGroupBox('toolCtrl')
             self.groupBox2.setLayout(self.grid2)
             self.hbox.addWidget(self.groupBox2)
-        if 'programCtrl' in self._ini.sections():
+        if 'programCtrl' in self._config.keys():
             self.grid3 = QtWidgets.QGridLayout()
             self.groupBox3 = QtWidgets.QGroupBox('programCtrl')
             self.groupBox3.setLayout(self.grid3)
             self.hbox.addWidget(self.groupBox3)
-        if 'machineCtrl' in self._ini.sections():
+        if 'machineCtrl' in self._config.keys():
             self.grid4 = QtWidgets.QGridLayout()
             self.groupBox4 = QtWidgets.QGroupBox('machineCtrl')
             self.groupBox4.setLayout(self.grid4)
@@ -107,8 +111,8 @@ class ControlPanel(QtWidgets.QWidget):
         return positions
 
     def createSpindleControlBtns(self):
-        btns_text = [item.strip()
-                     for item in self._ini['spindelCtrl']['btns_zh'].split(',')]
+        btns_text = [self._config['spindelCtrl'][item]['zh_CN']
+                     for item in sorted(self._config['spindelCtrl'].keys())]
         positions = self.setBtnsLayout(len(btns_text))
         self.spindleCtrlBtnGroup = QtWidgets.QButtonGroup()
         for index, btn_text in enumerate(btns_text):
@@ -118,8 +122,8 @@ class ControlPanel(QtWidgets.QWidget):
                 button, positions[index][0], positions[index][1])
 
     def createToolControlBtns(self):
-        btns_text = [item.strip()
-                     for item in self._ini['toolCtrl']['btns_zh'].split(',')]
+        btns_text = [self._config['toolCtrl'][item]['zh_CN']
+                     for item in sorted(self._config['toolCtrl'].keys())]
         positions = self.setBtnsLayout(len(btns_text))
         for index, btn_text in enumerate(btns_text):
             button = PanelButton(name=btn_text)
@@ -127,8 +131,8 @@ class ControlPanel(QtWidgets.QWidget):
                 button, positions[index][0], positions[index][1])
 
     def createProgramControlBtns(self):
-        btns_text = [item.strip()
-                     for item in self._ini['programCtrl']['btns_zh'].split(',')]
+        btns_text = [self._config['programCtrl'][item]['zh_CN']
+                     for item in sorted(self._config['programCtrl'].keys())]
         positions = self.setBtnsLayout(len(btns_text))
         for index, btn_text in enumerate(btns_text):
             button = PanelButton(name=btn_text)
@@ -136,8 +140,8 @@ class ControlPanel(QtWidgets.QWidget):
                 button, positions[index][0], positions[index][1])
 
     def createMachineControlBtns(self):
-        btns_text = [item.strip()
-                     for item in self._ini['machineCtrl']['btns_zh'].split(',')]
+        btns_text = [self._config['machineCtrl'][item]['zh_CN']
+                     for item in sorted(self._config['machineCtrl'].keys())]
         positions = self.setBtnsLayout(len(btns_text))
         self.machineCtrlBtnGroup = QtWidgets.QButtonGroup()
         for index, btn_text in enumerate(btns_text):
