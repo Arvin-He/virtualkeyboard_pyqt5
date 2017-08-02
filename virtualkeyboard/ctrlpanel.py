@@ -16,13 +16,13 @@ _configpath = os.path.abspath('ini/ctrlpanel.json')
 
 class PanelButton(QtWidgets.QPushButton):
 
-    def __init__(self, parent=None, name='', width=50, height=50, scale=1):
+    def __init__(self, parent=None, text='', cmd=''):
         super(PanelButton, self).__init__(parent)
         self.setSizePolicy(QtWidgets.QSizePolicy.Expanding,
                            QtWidgets.QSizePolicy.Expanding)
-        self.setText(name)
-
-        # self.clicked.connect(self.button_clicked)
+        self.setText(text)
+        self.cmd = cmd
+        self.clicked.connect(lambda: punggol_exec(self.cmd))
 
 
 class ControlPanel(QtWidgets.QWidget):
@@ -48,18 +48,6 @@ class ControlPanel(QtWidgets.QWidget):
         self.panelHeight = self._config['geometry']['height']
 
         self.initUI()
-        self.spindleCtrlBtnGroup.buttons()[0].clicked.connect(
-            self.on_spindleRun)
-        self.spindleCtrlBtnGroup.buttons()[1].clicked.connect(
-            self.on_spindleLocate)
-        self.spindleCtrlBtnGroup.buttons()[2].clicked.connect(
-            self.on_spindleReverseRun)
-        self.spindleCtrlBtnGroup.buttons()[3].clicked.connect(
-            self.on_switchCSAxis)
-        self.spindleCtrlBtnGroup.buttons()[4].clicked.connect(
-            self.on_spindleStop)
-        # self.machineCtrlBtnGroup.buttons()[7].clicked.connect(
-            # lambda: self.close())
 
     def initUI(self):
         self.setFixedSize(self.panelWidth, self.panelHeight)
@@ -113,10 +101,13 @@ class ControlPanel(QtWidgets.QWidget):
     def createSpindleControlBtns(self):
         btns_text = [self._config['spindelCtrl'][item]['zh_CN']
                      for item in sorted(self._config['spindelCtrl'].keys())]
+        btns_name = sorted(self._config['spindelCtrl'].keys())
         positions = self.setBtnsLayout(len(btns_text))
         self.spindleCtrlBtnGroup = QtWidgets.QButtonGroup()
         for index, btn_text in enumerate(btns_text):
-            button = PanelButton(name=btn_text)
+            btn_name = btns_name[index]
+            button = PanelButton(
+                text=btn_text, cmd=self._config['spindelCtrl'][btn_name]['btn_cmd'])
             self.spindleCtrlBtnGroup.addButton(button)
             self.grid1.addWidget(
                 button, positions[index][0], positions[index][1])
@@ -124,43 +115,37 @@ class ControlPanel(QtWidgets.QWidget):
     def createToolControlBtns(self):
         btns_text = [self._config['toolCtrl'][item]['zh_CN']
                      for item in sorted(self._config['toolCtrl'].keys())]
+        btns_name = sorted(self._config['toolCtrl'].keys())
         positions = self.setBtnsLayout(len(btns_text))
         for index, btn_text in enumerate(btns_text):
-            button = PanelButton(name=btn_text)
+            btn_name = btns_name[index]
+            button = PanelButton(
+                text=btn_text, cmd=self._config['toolCtrl'][btn_name]['btn_cmd'])
             self.grid2.addWidget(
                 button, positions[index][0], positions[index][1])
 
     def createProgramControlBtns(self):
         btns_text = [self._config['programCtrl'][item]['zh_CN']
                      for item in sorted(self._config['programCtrl'].keys())]
+        btns_name = sorted(self._config['programCtrl'].keys())
         positions = self.setBtnsLayout(len(btns_text))
         for index, btn_text in enumerate(btns_text):
-            button = PanelButton(name=btn_text)
+            btn_name = btns_name[index]
+            button = PanelButton(
+                text=btn_text, cmd=self._config['programCtrl'][btn_name]['btn_cmd'])
             self.grid3.addWidget(
                 button, positions[index][0], positions[index][1])
 
     def createMachineControlBtns(self):
         btns_text = [self._config['machineCtrl'][item]['zh_CN']
                      for item in sorted(self._config['machineCtrl'].keys())]
+        btns_name = sorted(self._config['machineCtrl'].keys())
         positions = self.setBtnsLayout(len(btns_text))
         self.machineCtrlBtnGroup = QtWidgets.QButtonGroup()
         for index, btn_text in enumerate(btns_text):
-            button = PanelButton(name=btn_text)
+            btn_name = btns_name[index]
+            button = PanelButton(
+                text=btn_text, cmd=self._config['machineCtrl'][btn_name]['btn_cmd'])
             self.machineCtrlBtnGroup.addButton(button)
             self.grid4.addWidget(
                 button, positions[index][0], positions[index][1])
-
-    def on_spindleRun(self):
-        punggol_exec("basic.mdi('M3')")
-
-    def on_spindleLocate(self):
-        pass
-
-    def on_spindleReverseRun(self):
-        punggol_exec("basic.mdi('M4')")
-
-    def on_switchCSAxis(self):
-        pass
-
-    def on_spindleStop(self):
-        punggol_exec("basic.mdi('M5')")

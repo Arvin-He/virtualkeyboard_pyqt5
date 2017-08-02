@@ -9,7 +9,7 @@
         "btn1": {
             "zh_CN": "主轴正转",
             "en_US": "",
-            "btn_cmd": ""
+            "btn_cmd": "basic.mdi('M3')"
             },
         "btn2": {
             "zh_CN": "主轴定位",
@@ -19,7 +19,7 @@
         "btn3": {
             "zh_CN": "主轴反转",
             "en_US": "",
-            "btn_cmd": ""
+            "btn_cmd": "basic.mdi('M4')"
             },
         "btn4": {
             "zh_CN": "C/S轴切换",
@@ -29,7 +29,7 @@
         "btn5": {
             "zh_CN": "主轴停转",
             "en_US": "",
-            "btn_cmd": ""
+            "btn_cmd": "basic.mdi('M5')"
             }
     },
     "toolCtrl":{
