@@ -5,9 +5,8 @@ import json
 import math
 import logging
 from PyQt5 import QtGui
-from PyQt5 import QtCore
+from PyQt5 import QtCore, uic
 from PyQt5 import QtWidgets
-import utils
 from punggol_rpc import punggol_eval, punggol_exec
 
 
@@ -22,25 +21,20 @@ class PanelButton(QtWidgets.QPushButton):
                            QtWidgets.QSizePolicy.Expanding)
         self.setText(text)
         self.cmd = cmd
-        self.clicked.connect(lambda: punggol_exec(self.cmd))
+        self.clicked.connect(self.button_clicked)
+
+    def button_clicked(self):
+        try:
+            punggol_exec(self.cmd)
+        except Exception as e:
+            # print(e)
+            return
 
 
 class ControlPanel(QtWidgets.QWidget):
 
     def __init__(self, parent=None):
         super(ControlPanel, self).__init__(parent)
-        if sys.platform == "win32":
-            self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus |
-                                QtCore.Qt.Tool |
-                                QtCore.Qt.FramelessWindowHint |
-                                QtCore.Qt.WindowStaysOnTopHint)
-        else:
-            self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus |
-                                QtCore.Qt.Tool |
-                                QtCore.Qt.FramelessWindowHint |
-                                QtCore.Qt.WindowStaysOnTopHint |
-                                QtCore.Qt.X11BypassWindowManagerHint)
-
         with open(_configpath, 'r', encoding='utf-8') as f:
             self._config = json.load(f)
 
@@ -50,9 +44,11 @@ class ControlPanel(QtWidgets.QWidget):
         self.initUI()
 
     def initUI(self):
+        self.ui = uic.loadUi(os.path.join(os.path.dirname(__file__), "res/ctrlpanel.ui"), self)
         self.setFixedSize(self.panelWidth, self.panelHeight)
-        self.createLayout()
-        self.createButtons()
+        self.ui.btn1.cmd = "basic.mdi('M3')"
+        # self.createLayout()
+        # self.createButtons()
 
     def createLayout(self):
         self.hbox = QtWidgets.QHBoxLayout()
@@ -137,15 +133,3 @@ class ControlPanel(QtWidgets.QWidget):
                 button, positions[index][0], positions[index][1])
 
     def createMachineControlBtns(self):
-        btns_text = [self._config['machineCtrl'][item]['zh_CN']
-                     for item in sorted(self._config['machineCtrl'].keys())]
-        btns_name = sorted(self._config['machineCtrl'].keys())
-        positions = self.setBtnsLayout(len(btns_text))
-        self.machineCtrlBtnGroup = QtWidgets.QButtonGroup()
-        for index, btn_text in enumerate(btns_text):
-            btn_name = btns_name[index]
-            button = PanelButton(
-                text=btn_text, cmd=self._config['machineCtrl'][btn_name]['btn_cmd'])
-            self.machineCtrlBtnGroup.addButton(button)
-            self.grid4.addWidget(
-                button, positions[index][0], positions[index][1])

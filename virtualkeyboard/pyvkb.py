@@ -6,9 +6,7 @@ import pyautogui
 from PyQt5 import QtGui
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
-import utils
-if sys.platform == "win32":
-    import ctypes
+
 
 show_function_keys = True
 show_character_keys = True
@@ -24,18 +22,6 @@ class KeyButton(QtWidgets.QPushButton):
 
     def __init__(self, parent=None, name='', width=50, height=50, scale=1):
         super(KeyButton, self).__init__(parent)
-        if sys.platform == "win32":
-            self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus |
-                                QtCore.Qt.Tool |
-                                QtCore.Qt.FramelessWindowHint |
-                                QtCore.Qt.WindowStaysOnTopHint)
-        else:
-            self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus |
-                                QtCore.Qt.Tool |
-                                QtCore.Qt.FramelessWindowHint |
-                                QtCore.Qt.WindowStaysOnTopHint |
-                                QtCore.Qt.X11BypassWindowManagerHint)
-
         self.setSizePolicy(QtWidgets.QSizePolicy.Expanding,
                            QtWidgets.QSizePolicy.Expanding)
         self.setText(name)
@@ -84,17 +70,6 @@ class KeyButton(QtWidgets.QPushButton):
 class Keyboard(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(Keyboard, self).__init__(parent)
-        if sys.platform == "win32":
-            self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus |
-                                QtCore.Qt.Tool |
-                                QtCore.Qt.FramelessWindowHint |
-                                QtCore.Qt.WindowStaysOnTopHint)
-        else:
-            self.setWindowFlags(QtCore.Qt.WindowDoesNotAcceptFocus |
-                                QtCore.Qt.Tool |
-                                QtCore.Qt.FramelessWindowHint |
-                                QtCore.Qt.WindowStaysOnTopHint |
-                                QtCore.Qt.X11BypassWindowManagerHint)
         with open(_vkbconfigpath, 'r', encoding='utf-8') as f:
             self._config = json.load(f)
         self.keyboardWidth = self._config['geometry']['width']  
