@@ -133,3 +133,15 @@ class ControlPanel(QtWidgets.QWidget):
                 button, positions[index][0], positions[index][1])
 
     def createMachineControlBtns(self):
+        btns_text = [self._config['machineCtrl'][item]['zh_CN']
+                     for item in sorted(self._config['machineCtrl'].keys())]
+        btns_name = sorted(self._config['machineCtrl'].keys())
+        positions = self.setBtnsLayout(len(btns_text))
+        self.machineCtrlBtnGroup = QtWidgets.QButtonGroup()
+        for index, btn_text in enumerate(btns_text):
+            btn_name = btns_name[index]
+            button = PanelButton(
+                text=btn_text, cmd=self._config['machineCtrl'][btn_name]['btn_cmd'])
+            self.machineCtrlBtnGroup.addButton(button)
+            self.grid4.addWidget(
+                button, positions[index][0], positions[index][1])
