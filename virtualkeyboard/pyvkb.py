@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 import os
 import sys
+import json
 import pyautogui
 from PyQt5 import QtGui
 from PyQt5 import QtCore
@@ -9,30 +10,12 @@ import utils
 if sys.platform == "win32":
     import ctypes
 
-_inipath = os.path.abspath('ini/virtualkeyboard.ini')
 show_function_keys = True
 show_character_keys = True
 show_system_editing_navigation_keys = False
 show_numeric_keys = False
 
-board_keys = {
-    "function_keys": ['esc', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6',
-                      'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'close'],
-    "character_keys": [
-        ['~\n`', '!\n1', '@\n2', '#\n3', '$\n4', '%\n5', '^\n6', '&&\n7',
-            '*\n8', '(\n9', ')\n0', '_\n-', '+\n=', 'backspace'],
-        ['tab', 'q', 'w', 'e', 'r', 't', 'y', 'u',
-            'i', 'o', 'p', '{\n[', '}\n]', '|\n\\'],
-        ['capslock', 'a', 's', 'd', 'f', 'g', 'h',
-            'j', 'k', 'l', ':\n;', '"\n\'', 'enter'],
-        ['shift', 'z', 'x', 'c', 'v', 'b', 'n',
-            'm', '<\n,', '>\n.', '?\n/', 'shift'],
-        ['ctrl', 'win', 'alt', 'space', 'alt', 'win', '[=]', 'ctrl']],
-    "system_keys": ['printscreen', 'scrolllock', 'pause'],
-    "editing_keys": ['insert', 'home', 'pageup', 'delete', 'end', 'pagedown'],
-    "navigation_keys": ['up', 'left', 'down', 'right'],
-    "numeric_keys": ['numlock', '/', '*', '-', '7', '8', '9', '+', '4', '5', '6', '1', '2', '3', 'enter', '0', '.'],
-}
+_vkbconfigpath = os.path.abspath('ini/vkb.json')
 
 
 class KeyButton(QtWidgets.QPushButton):
@@ -69,7 +52,7 @@ class KeyButton(QtWidgets.QPushButton):
                 KeyButton.capslock_flag = True
                 self.setStyleSheet('''background-color: rgb(10,206,10);
                                    color:white''')
-                
+
         if key_text == 'shift':
             if KeyButton.shift_flag is True:
                 KeyButton.shift_flag = False
@@ -81,6 +64,8 @@ class KeyButton(QtWidgets.QPushButton):
                                    color:white''')
 
         if '\n' in key_text:
+            if '&&' in key_text:
+                key_text = key_text[1:]
             if not KeyButton.shift_flag:
                 key = key_text[key_text.find('\n') + 1:]
             else:
@@ -110,17 +95,18 @@ class Keyboard(QtWidgets.QWidget):
                                 QtCore.Qt.FramelessWindowHint |
                                 QtCore.Qt.WindowStaysOnTopHint |
                                 QtCore.Qt.X11BypassWindowManagerHint)
-        self._ini = utils.loadConfig(_inipath)
-        self.keyboardWidth = int(self._ini['geometry']['width'])
-        self.keyboardHeight = int(self._ini['geometry']['height'])
+        with open(_vkbconfigpath, 'r', encoding='utf-8') as f:
+            self._config = json.load(f)
+        self.keyboardWidth = self._config['geometry']['width']  
+        self.keyboardHeight = self._config['geometry']['height']
         self.initUI()
 
     def initUI(self):
         self.createLayout()
         self.createKeyButtons()
         self.setFixedSize(self.keyboardWidth, self.keyboardHeight)
-        # self.closeAllWindow = False
-        self.functionBtnGroup.buttons()[13].clicked.connect(self.closeWindow)
+        self.functionBtnGroup.buttons()[13].clicked.connect(
+            lambda: self.close())
 
     def createLayout(self):
         self.hbox = QtWidgets.QHBoxLayout()
@@ -165,40 +151,38 @@ class Keyboard(QtWidgets.QWidget):
     def createFunctionButtons(self):
         if hasattr(self, 'grid0'):
             self.functionBtnGroup = QtWidgets.QButtonGroup()
-            for index, key_name in enumerate(board_keys['function_keys']):
+            for index, key_name in enumerate(self._config['keys']['row0']):
                 button = KeyButton(name=key_name.capitalize())
                 self.functionBtnGroup.addButton(button)
                 self.grid0.addWidget(button, 0, index)
 
     def createCharacterButtons(self):
         self.rowOneBtnGroup = QtWidgets.QButtonGroup()
-        for index, key_name in enumerate(board_keys['character_keys'][0]):
-            if key_name == "backspace":
-                button = KeyButton(name=key_name.capitalize())
-                self.grid1.addWidget(button, 0, index, 1, 5)
-                self.rowOneBtnGroup.addButton(button)
-            else:
-                button = KeyButton(name=key_name.capitalize())
-                self.grid1.addWidget(button, 0, index)
-                self.rowOneBtnGroup.addButton(button)
+        for index, key_name in enumerate(self._config['keys']['row1']):
+            button = KeyButton(name=key_name.capitalize())
+            self.grid1.addWidget(button, 0, index)
+            self.rowOneBtnGroup.addButton(button)
 
         self.rowTwoBtnGroup = QtWidgets.QButtonGroup()
-        for index, key_name in enumerate(board_keys['character_keys'][1]):
+        for index, key_name in enumerate(self._config['keys']['row2']):
             button = KeyButton(name=key_name.capitalize())
             self.rowOneBtnGroup.addButton(button)
             self.grid2.addWidget(button, 0, index)
+
         self.rowThreeBtnGroup = QtWidgets.QButtonGroup()
-        for index, key_name in enumerate(board_keys['character_keys'][2]):
+        for index, key_name in enumerate(self._config['keys']['row3']):
             button = KeyButton(name=key_name.capitalize())
             self.rowOneBtnGroup.addButton(button)
             self.grid3.addWidget(button, 0, index)
+
         self.rowFourBtnGroup = QtWidgets.QButtonGroup()
-        for index, key_name in enumerate(board_keys['character_keys'][3]):
+        for index, key_name in enumerate(self._config['keys']['row4']):
             button = KeyButton(name=key_name.capitalize())
             self.rowOneBtnGroup.addButton(button)
             self.grid4.addWidget(button, 0, index)
+
         self.rowFiveBtnGroup = QtWidgets.QButtonGroup()
-        for index, key_name in enumerate(board_keys['character_keys'][4]):
+        for index, key_name in enumerate(self._config['keys']['row5']):
             button = KeyButton(name=key_name.capitalize())
             self.rowOneBtnGroup.addButton(button)
             if key_name == "space":
@@ -252,13 +236,7 @@ class Keyboard(QtWidgets.QWidget):
                         self.numericGrid.addWidget(button, 3, index - 11)
                 elif index in range(15, 17):
                     if index == 15:
-                        self.numericGrid.addWidget(
-                            button, 4, index - 15, 1, 2, QtCore.Qt.AlignHCenter)
+                        self.numericGrid.addWidget(button, 4, index - 15, 1, 2,
+                                                   QtCore.Qt.AlignHCenter)
                     else:
                         self.numericGrid.addWidget(button, 4, 2)
-    
-    def closeWindow(self):
-        self.close()
-        # self.closeAllWindow = True
-
-   
