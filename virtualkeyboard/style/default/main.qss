@@ -1,0 +1,142 @@
+QWidget {
+    font-family: Droid Sans Fallback;
+    font: 11pt;
+}
+
+#mainWindow, QDialog {
+    background-color:rgb(245, 245, 245);
+}
+
+QPushButton {
+    background-color: qconicalgradient(cx:0.5, cy:0.522909, angle:179.9,
+                                    stop:0.494318 rgba(214, 214, 214, 255),
+                                    stop:0.5 rgba(236, 236, 236, 255));
+    border: 1px solid rgb(124, 124, 124);
+    border-radius:3px;
+    color: black;
+    font-size: 16px;
+    padding: 3px;
+}
+
+QPushButton:hover{
+    border-color: #54a0ec;
+}
+
+QPushButton:pressed {
+    border-style: inset;
+}
+
+QPushButton:checked {
+    color: white;
+    background-color: qconicalgradient(cx:0.5, cy:0.522909, angle:179.9,
+                                    stop:0.494318 rgba(0, 85, 255, 255),
+                                    stop:0.5 rgba(50, 120, 255, 255));
+    border-color:#0039b0;
+}
+
+QPushButton:disabled
+{
+    color: dark;
+    background-color:rgb(245, 245, 245);
+    border-color:rgb(120, 120, 120);
+}
+
+QPushButton:disabled:checked
+{
+    color: white;
+    background-color: qconicalgradient(cx:0.5, cy:0.522909, angle:179.9,
+                                    stop:0.494318 rgba(0, 85, 255, 255),
+                                    stop:0.5 rgba(50, 120, 255, 255));
+    border-color:#0039b0;
+}
+
+QLineEdit
+{
+    min-height: 23px;
+}
+
+QLineEdit:disabled
+{
+    color: dark;
+    background-color:rgb(245, 245, 245);
+    border-color:rgb(120, 120, 120);
+}
+
+QLabel:disabled
+{
+    color: dark;
+}
+
+QRadioButton::indicator:checked {
+image: url(images/radiobtn_checked.png);
+}
+
+QRadioButton::indicator:checked:disabled {
+    image: url(images/radiobtn_checked_disabled.png);
+}
+
+QRadioButton::indicator:checked:pressed {
+    image: url(images/radiobtn_checked_pressed.png);
+}
+
+QRadioButton::indicator:checked:hover {
+    image: url(images/radiobtn_checked_hover.png);
+}
+
+QRadioButton::indicator:unchecked {
+    image: url(images/radiobtn_unchecked.png);
+}
+
+QRadioButton::indicator:unchecked:disabled {
+    image: url(images/radiobtn_unchecked.png);
+}
+
+QRadioButton::indicator:unchecked:pressed {
+    image: url(images/radiobtn_unchecked_pressed.png);
+}
+
+QRadioButton::indicator:unchecked:hover {
+    image: url(images/radiobtn_unchecked_hover.png);
+}
+
+QMessageBox QPushButton {
+    min-width: 90px;
+    min-height: 26px;
+}
+
+QMessageBox QLabel {
+    font: 13pt;
+}
+
+QTableView {
+    font: 11pt;
+}
+
+PyMenuButton {
+    color: rgb(50, 50, 50);
+    background-color: rgb(225, 225, 225);
+    border-color: rgb(167, 167, 167);
+    border-width: 2px;
+    border-style: outset;
+    border-radius:0px;
+}
+
+PyMenuButton:hover {  
+    background-color: rgb(235, 235, 235);
+    border-color: rgb(167, 167, 167);
+    border-width: 2px;
+    border-style: outset;
+}
+
+PyMenuButton:pressed {  
+    background-color: rgb(210, 210, 210);
+    border-color: rgb(167, 167, 167);
+    border-width: 2px;
+    border-style: inset;
+}
+
+QComboBox
+{
+    min-width: 75px;
+    min-height: 23px;
+}

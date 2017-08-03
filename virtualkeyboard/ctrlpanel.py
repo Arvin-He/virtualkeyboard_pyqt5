@@ -4,31 +4,15 @@ import sys
 import json
 import math
 import logging
+import functools
 from PyQt5 import QtGui
 from PyQt5 import QtCore, uic
 from PyQt5 import QtWidgets
 from punggol_rpc import punggol_eval, punggol_exec
-
+import utils
+from panelbutton import PanelButton
 
 _configpath = os.path.abspath('ini/ctrlpanel.json')
-
-
-class PanelButton(QtWidgets.QPushButton):
-
-    def __init__(self, parent=None, text='', cmd=''):
-        super(PanelButton, self).__init__(parent)
-        self.setSizePolicy(QtWidgets.QSizePolicy.Expanding,
-                           QtWidgets.QSizePolicy.Expanding)
-        self.setText(text)
-        self.cmd = cmd
-        self.clicked.connect(self.button_clicked)
-
-    def button_clicked(self):
-        try:
-            punggol_exec(self.cmd)
-        except Exception as e:
-            # print(e)
-            return
 
 
 class ControlPanel(QtWidgets.QWidget):
@@ -44,36 +28,46 @@ class ControlPanel(QtWidgets.QWidget):
         self.initUI()
 
     def initUI(self):
-        self.ui = uic.loadUi(os.path.join(os.path.dirname(__file__), "res/ctrlpanel.ui"), self)
+        self.ui = uic.loadUi(os.path.join(
+            os.path.dirname(__file__), "res/ctrlpanel.ui"), self)
         self.setFixedSize(self.panelWidth, self.panelHeight)
-        self.ui.btn1.cmd = "basic.mdi('M3')"
-        # self.createLayout()
-        # self.createButtons()
+        for attr in dir(self.ui):
+            obj = getattr(self.ui, attr)
+            if isinstance(obj, QtWidgets.QPushButton):
+                # 这里有一个坑,闭包的问题
+                obj.clicked.connect(functools.partial(self.on_clicked, obj))
+                # obj.clicked.connect(lambda: punggol_exec(obj.property("btn_cmd")))
+
+    def on_clicked(self, btn):
+        punggol_exec(btn.property("btn_cmd"))
 
     def createLayout(self):
-        self.hbox = QtWidgets.QHBoxLayout()
-        # if 'spindelCtrl' in self._ini.sections():
+        self.grid0 = QtWidgets.QGridLayout()
         if 'spindelCtrl' in self._config.keys():
             self.grid1 = QtWidgets.QGridLayout()
             self.groupBox1 = QtWidgets.QGroupBox('spindelCtrl')
             self.groupBox1.setLayout(self.grid1)
-            self.hbox.addWidget(self.groupBox1)
+            self.grid0.addWidget(self.groupBox1, 0, 0, 0, 2)
         if 'toolCtrl' in self._config.keys():
             self.grid2 = QtWidgets.QGridLayout()
             self.groupBox2 = QtWidgets.QGroupBox('toolCtrl')
             self.groupBox2.setLayout(self.grid2)
-            self.hbox.addWidget(self.groupBox2)
+            self.grid0.addWidget(self.groupBox2, 0, 2, 0, 3)
+            # self.hbox.addWidget(self.groupBox2)
         if 'programCtrl' in self._config.keys():
             self.grid3 = QtWidgets.QGridLayout()
             self.groupBox3 = QtWidgets.QGroupBox('programCtrl')
             self.groupBox3.setLayout(self.grid3)
-            self.hbox.addWidget(self.groupBox3)
+            self.grid0.addWidget(self.groupBox3, 0, 6, 0, 2)
+            # self.hbox.addWidget(self.groupBox3)
         if 'machineCtrl' in self._config.keys():
             self.grid4 = QtWidgets.QGridLayout()
             self.groupBox4 = QtWidgets.QGroupBox('machineCtrl')
             self.groupBox4.setLayout(self.grid4)
-            self.hbox.addWidget(self.groupBox4)
-        self.setLayout(self.hbox)
+            self.grid0.addWidget(self.groupBox4, 0, 8, 0, 3)
+            # self.hbox.addWidget(self.groupBox4)
+        self.setLayout(self.grid0)
+        # self.setLayout(self.hbox)
 
     def createButtons(self):
         self.createSpindleControlBtns()
