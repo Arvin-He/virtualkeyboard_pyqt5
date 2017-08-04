@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>300</height>
+    <width>897</width>
+    <height>298</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -74,56 +74,8 @@
         <property name="bottomMargin">
          <number>6</number>
         </property>
-        <item row="1" column="0">
-         <widget class="PyPushButton" name="PyPushButton_3">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>主轴反转</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="PyPushButton" name="PyPushButton_4">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string> C/S轴切换</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="PyPushButton" name="PyPushButton_5">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>主轴停转</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
-         <widget class="QPushButton" name="PushButton">
+         <widget class="QPushButton" name="PushButton_1">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -132,6 +84,9 @@
           </property>
           <property name="text">
            <string>主轴正转</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring>basic.mdi('M3')</cstring>
           </property>
          </widget>
         </item>
@@ -145,6 +100,57 @@
           </property>
           <property name="text">
            <string>主轴定位</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="PushButton_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>主轴反转</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring>basic.mdi('M4')</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="PushButton_4">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string> C/S轴切换</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="PushButton_5">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>主轴停转</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring>basic.mdi('M5')</cstring>
           </property>
          </widget>
         </item>
@@ -185,102 +191,6 @@
         <property name="bottomMargin">
          <number>6</number>
         </property>
-        <item row="1" column="2">
-         <widget class="PyPushButton" name="PyPushButton_9">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>刀库退回</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="PyPushButton" name="PyPushButton_8">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>卸刀</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="PyPushButton" name="PyPushButton_7">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>刀库退出</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="PyPushButton" name="PyPushButton_10">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>刀库门</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="PyPushButton" name="PyPushButton_16">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>刀库反转</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="PyPushButton" name="PyPushButton_17">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>换刀</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="1">
          <widget class="QPushButton" name="PushButton_6">
           <property name="sizePolicy">
@@ -291,6 +201,105 @@
           </property>
           <property name="text">
            <string>刀库正转</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QPushButton" name="PushButton_17">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>换刀</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="PushButton_10">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>刀库门</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="PushButton_8">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>卸刀</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="PushButton_16">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>刀库反转</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="PushButton_9">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>刀库退回</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="PushButton_7">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>刀库退出</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
           </property>
          </widget>
         </item>
@@ -332,7 +341,7 @@
          <number>6</number>
         </property>
         <item row="0" column="0">
-         <widget class="PyPushButton" name="PyPushButton_18">
+         <widget class="QPushButton" name="PushButton_18">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -342,13 +351,13 @@
           <property name="text">
            <string>单段执行</string>
           </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
           </property>
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="PyPushButton" name="PyPushButton_19">
+         <widget class="QPushButton" name="PushButton_19">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -358,29 +367,13 @@
           <property name="text">
            <string>选择跳过</string>
           </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="PyPushButton" name="PyPushButton_20">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>手轮引导</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
           </property>
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="PyPushButton" name="PyPushButton_21">
+         <widget class="QPushButton" name="PushButton_21">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -390,13 +383,29 @@
           <property name="text">
            <string>选择停止</string>
           </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="PushButton_20">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>手轮引导</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
           </property>
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="PyPushButton" name="PyPushButton_22">
+         <widget class="QPushButton" name="PushButton_22">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -406,8 +415,8 @@
           <property name="text">
            <string>自动对刀</string>
           </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
           </property>
          </widget>
         </item>
@@ -448,102 +457,6 @@
         <property name="bottomMargin">
          <number>6</number>
         </property>
-        <item row="0" column="1">
-         <widget class="PyPushButton" name="PyPushButton_23">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>机床吹气</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="PyPushButton" name="PyPushButton_24">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>排屑反转</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="PyPushButton" name="PyPushButton_25">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>照明</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="PyPushButton" name="PyPushButton_26">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>冷却</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="PyPushButton" name="PyPushButton_27">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>排屑停止</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="PyPushButton" name="PyPushButton_28">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>排屑正转</string>
-          </property>
-          <property name="py_text" stdset="0">
-           <string notr="true"/>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="0">
          <widget class="QPushButton" name="PushButton_29">
           <property name="sizePolicy">
@@ -555,6 +468,105 @@
           <property name="text">
            <string>润滑</string>
           </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QPushButton" name="PushButton_23">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>机床吹气</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="PushButton_26">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>冷却</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="PushButton_24">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>排屑反转</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="PushButton_28">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>排屑正转</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="PushButton_25">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>照明</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QPushButton" name="PushButton_27">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>排屑停止</string>
+          </property>
+          <property name="btn_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
          </widget>
         </item>
        </layout>
@@ -564,13 +576,6 @@
    </layout>
   </widget>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>PyPushButton</class>
-   <extends>QPushButton</extends>
-   <header>common/widgets/pushbutton.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

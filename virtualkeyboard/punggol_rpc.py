@@ -1,4 +1,4 @@
-
+# -*- coding:utf-8 -*-
 import ast
 import gevent.socket
 
@@ -6,11 +6,11 @@ _SERVER_ADDRESS = ("127.0.0.1", 21000)
 
 
 class _Connection:
-
     _pool = []
 
     def __init__(self):
-        self._socket = gevent.socket.socket(gevent.socket.AF_INET, gevent.socket.SOCK_DGRAM)
+        self._socket = gevent.socket.socket(
+            gevent.socket.AF_INET, gevent.socket.SOCK_DGRAM)
         self._socket.connect(_SERVER_ADDRESS)
 
     def __enter__(self):

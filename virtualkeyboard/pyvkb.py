@@ -1,19 +1,14 @@
 # -*- coding:utf-8 -*-
-import os
-import sys
-import json
 import pyautogui
-from PyQt5 import QtGui
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
+from utils import loadJson
 
 
 show_function_keys = True
 show_character_keys = True
 show_system_editing_navigation_keys = False
 show_numeric_keys = False
-
-_vkbconfigpath = os.path.abspath('ini/vkb.json')
 
 
 class KeyButton(QtWidgets.QPushButton):
@@ -70,10 +65,9 @@ class KeyButton(QtWidgets.QPushButton):
 class Keyboard(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(Keyboard, self).__init__(parent)
-        with open(_vkbconfigpath, 'r', encoding='utf-8') as f:
-            self._config = json.load(f)
-        self.keyboardWidth = self._config['geometry']['width']  
-        self.keyboardHeight = self._config['geometry']['height']
+        self._config = loadJson()
+        self.keyboardWidth = self._config['keyboard']['width']  
+        self.keyboardHeight = self._config['keyboard']['height']
         self.initUI()
 
     def initUI(self):

@@ -1,10 +1,9 @@
 # /user/bin/python3
 # -*- coding:utf-8 -*-
-import os
 import sys
 from PyQt5 import QtWidgets
 from touchpanel import TouchPanel
-from utils import loadConfig, loadApplicationStyleSheet
+from utils import loadApplicationStyleSheet
 if sys.platform == "win32":
     import ctypes
 
@@ -12,7 +11,6 @@ if sys.platform == "win32":
 def main():
     app = QtWidgets.QApplication(sys.argv)
     loadApplicationStyleSheet(app)
-
     touch_panel = TouchPanel()
     touch_panel.show()
     if sys.platform == "win32":

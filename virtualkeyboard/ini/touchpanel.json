@@ -1,11 +1,23 @@
 {
-    "geometry":{
+    "touchpanel": {
         "left": 0,
         "top": 750,
         "width": 900,
-        "height": 350,
-        "top_on_win32": 300,
-        "left_on_win32": 1000
+        "height": 650,
+        "left_win32": 500,
+        "top_win32": 300
+    },
+    "keyboard": {
+        "left": 0,
+        "top": 0,
+        "width": 900,
+        "height": 350
+    },
+    "controlpanel": {
+        "left": 0,
+        "top": 350,
+        "width": 900,
+        "height": 300
     },
     "keys":
         {"row0": ["esc", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "Close"],

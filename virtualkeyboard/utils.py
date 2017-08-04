@@ -1,11 +1,15 @@
 # -*- coding:utf-8 -*-
 import os
+import json
 import functools
 import configparser
 from PyQt5 import QtCore
 from PyQt5 import QtGui
 
+_touchpanelconfigpath = os.path.abspath('ini/touchpanel.json')
 
+
+# 加载ini配置文件
 def loadConfig(config_path):
     cf = configparser.ConfigParser()
     cf.optionxform = str
@@ -19,9 +23,17 @@ def loadConfig(config_path):
         return None
 
 
+# 加载json配置文件
+def loadJson():
+    try:
+        with open(_touchpanelconfigpath, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except:
+        return None
+
+
 # @functools.lru_cache(maxsize=None)
 def _readRes(path):
-    # _logger.debug("_readRes: {}".format(path))
     f = QtCore.QFile(path)
     f.open(QtCore.QFile.ReadOnly | QtCore.QFile.Text)
     ts = QtCore.QTextStream(f)
@@ -36,9 +48,7 @@ def loadApplicationStyleSheet(app):
 
 
 def _eval(script):
-    # _DEBUG("eval {!r}".format(script))
     value = _builtin_eval(_compile_eval(script), _basic_dict, {})
-    # _DEBUG("    => {}".format(value))
     return value
 
 
