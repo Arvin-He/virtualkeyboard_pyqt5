@@ -47,6 +47,12 @@ class ControlPanel(QtWidgets.QWidget):
         try:
             if btn.property("clicked_cmd") is not None:
                 punggol_exec(btn.property("clicked_cmd"))
+            else:
+                if btn.property("pressed_cmd") is not None:
+                    punggol_exec(btn.property("pressed_cmd"))
+                time.sleep(0.05)
+                if btn.property("released_cmd") is not None:
+                    punggol_exec(btn.property("released_cmd"))
         except Exception as e:
             print(e)
             return
