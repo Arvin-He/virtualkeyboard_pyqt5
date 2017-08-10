@@ -1,11 +1,13 @@
 # -*- coding:utf-8 -*-
+
 import os
 import time
 import functools
+from PyQt5 import QtCore
 from PyQt5 import uic
 from PyQt5 import QtWidgets
 from utils import loadJson
-from punggol_rpc import punggol_exec
+from punggol_rpc import punggol_exec, punggol_eval
 
 
 class ControlPanel(QtWidgets.QWidget):
@@ -16,11 +18,15 @@ class ControlPanel(QtWidgets.QWidget):
         self.ctrlpanelWidth = self._config['controlpanel']['width']
         self.ctrlpanelHeight = self._config['controlpanel']['height']
         self.initUI()
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect(self.on_update)
+        self.timer.start(50)
 
     def initUI(self):
         self.ui = uic.loadUi(os.path.join(
             os.path.dirname(__file__), "res/ctrlpanel.ui"), self)
         self.setFixedSize(self.ctrlpanelWidth, self.ctrlpanelHeight)
+        self.buttonGroup = []
         for attr in dir(self.ui):
             obj = getattr(self.ui, attr)
             if isinstance(obj, QtWidgets.QPushButton) or \
@@ -29,7 +35,28 @@ class ControlPanel(QtWidgets.QWidget):
                 obj._repeate = False
                 obj.clicked.connect(
                     functools.partial(self.on_handleClicked, obj))
+                self.buttonGroup.append(obj)
 
+        self.ui.stackedWidget.setCurrentIndex(0)
+        self.ui.sys_ctrl.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentIndex(0))
+        self.ui.machine_ctrl.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentIndex(1))
+
+    def on_update(self):
+        try:
+            for btn in self.buttonGroup:
+                if btn.property("checked_cmd") is not None:
+                    btn.setCheckable(True)
+                    btn.setChecked(bool(punggol_eval(btn.property("checked_cmd"))))
+                time.sleep(0.01)
+                if btn.property("enabled_cmd") is not None:
+                    btn.setEnabled(bool(punggol_eval(btn.property("enabled_cmd"))))
+        except Exception as e:
+            print(e)
+            self.timer.stop()
+            return
+            
     def on_handleClicked(self, btn):
         if btn.isDown():
             if btn._repeate is False:
@@ -64,7 +91,7 @@ class ControlPanel(QtWidgets.QWidget):
         except Exception as e:
             print(e)
             return
-    
+
     def on_released(self, btn):
         try:
             if btn.property("released_cmd") is not None:
