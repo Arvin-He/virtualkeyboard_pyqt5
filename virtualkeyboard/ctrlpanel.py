@@ -49,7 +49,6 @@ class ControlPanel(QtWidgets.QWidget):
                 if btn.property("checked_cmd") is not None:
                     btn.setCheckable(True)
                     btn.setChecked(bool(punggol_eval(btn.property("checked_cmd"))))
-                time.sleep(0.01)
                 if btn.property("enabled_cmd") is not None:
                     btn.setEnabled(bool(punggol_eval(btn.property("enabled_cmd"))))
         except Exception as e:
