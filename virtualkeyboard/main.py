@@ -12,8 +12,7 @@ def main():
     app = QtWidgets.QApplication(sys.argv)
     loadApplicationStyleSheet(app)
     touch_panel = TouchPanel()
-    touch_panel.key_board.functionBtnGroup.buttons()[13].clicked.connect(
-            lambda: app.exit())
+    touch_panel.control_panel.ui.closeBtn.clicked.connect(lambda: app.exit())
     touch_panel.show()
     if sys.platform == "win32":
         # 等窗口显示以后再设置

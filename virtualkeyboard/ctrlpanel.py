@@ -3,8 +3,8 @@
 import os
 import time
 import functools
-from PyQt5 import QtCore
 from PyQt5 import uic
+from PyQt5 import QtCore
 from PyQt5 import QtWidgets
 from utils import loadJson
 from punggol_rpc import punggol_exec, punggol_eval
@@ -19,8 +19,9 @@ class ControlPanel(QtWidgets.QWidget):
         self.ctrlpanelHeight = self._config['controlpanel']['height']
         self.initUI()
         self.timer = QtCore.QTimer()
+        self.timer.setInterval(50)
         self.timer.timeout.connect(self.on_update)
-        self.timer.start(50)
+        self.timer.start()
 
     def initUI(self):
         self.ui = uic.loadUi(os.path.join(
@@ -31,36 +32,62 @@ class ControlPanel(QtWidgets.QWidget):
             obj = getattr(self.ui, attr)
             if isinstance(obj, QtWidgets.QPushButton) or \
                isinstance(obj, QtWidgets.QToolButton):
-                obj.setAutoRepeat(True)
+                obj.setAutoRepeat(True)      
                 obj._repeate = False
                 obj.clicked.connect(
                     functools.partial(self.on_handleClicked, obj))
                 self.buttonGroup.append(obj)
 
         self.ui.stackedWidget.setCurrentIndex(0)
-        self.ui.sys_ctrl.clicked.connect(
-            lambda: self.ui.stackedWidget.setCurrentIndex(0))
-        self.ui.machine_ctrl.clicked.connect(
-            lambda: self.ui.stackedWidget.setCurrentIndex(1))
+        self.onCheckSatus(self.ui.stackedWidget.currentIndex())
+        self.ui.sys_ctrl.clicked.connect(self.onSys_ctrl)
+        self.ui.machine_ctrl.clicked.connect(self.onMachine_ctrl)
+        self.ui.sys_ctrl_2.clicked.connect(self.onSys_ctrl_2)
+    
+    def onSys_ctrl(self):
+        # 切换至系统操作面板
+        self.ui.stackedWidget.setCurrentIndex(0)
+        self.onCheckSatus(self.ui.stackedWidget.currentIndex())
+
+    def onMachine_ctrl(self):
+        # 切换至机床操作面板
+        self.ui.stackedWidget.setCurrentIndex(2)
+        self.onCheckSatus(self.ui.stackedWidget.currentIndex())
+
+    def onSys_ctrl_2(self):
+        # 切换至系统操作面板2
+        self.ui.stackedWidget.setCurrentIndex(1)
+        self.onCheckSatus(self.ui.stackedWidget.currentIndex())
+    
+    def onCheckSatus(self, s):
+        self.ui.machine_ctrl.setChecked(True if s==2 else False)
+        self.ui.sys_ctrl.setChecked(True if s==0 else False)
+        self.ui.sys_ctrl_2.setChecked(True if s==1 else False)
 
     def on_update(self):
-        try:
-            for btn in self.buttonGroup:
-                if btn.property("checked_cmd") is not None:
+        for btn in self.buttonGroup:
+            if btn.property("checked_cmd") is not None:
+                if str(btn.property("checked_cmd")) != "":
                     btn.setCheckable(True)
-                    btn.setChecked(bool(punggol_eval(btn.property("checked_cmd"))))
-                if btn.property("enabled_cmd") is not None:
-                    btn.setEnabled(bool(punggol_eval(btn.property("enabled_cmd"))))
-        except Exception as e:
-            print(e)
-            self.timer.stop()
-            return
-            
+                    try:
+                        result = punggol_eval(btn.property("checked_cmd"))
+                        btn.setChecked(bool(result))
+                    except BaseException as e:
+                        return
+            if btn.property("enabled_cmd") is not None:
+                if str(btn.property("enabled_cmd")) != "":
+                    try:
+                        result = punggol_eval(btn.property("enabled_cmd"))
+                        btn.setEnabled(bool(result))
+                    except BaseException as e:
+                        return
+
     def on_handleClicked(self, btn):
         if btn.isDown():
             if btn._repeate is False:
                 btn._repeate = True
-                btn.setAutoRepeatInterval(50)
+                btn.setAutoRepeatInterval(30)
+                btn.setAutoRepeatDelay(0)
             else:
                 self.on_pressed(btn)
         elif btn._repeate is True:

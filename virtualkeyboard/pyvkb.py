@@ -1,4 +1,5 @@
 # -*- coding:utf-8 -*-
+import sys
 import pyautogui
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
@@ -11,9 +12,11 @@ show_system_editing_navigation_keys = False
 show_numeric_keys = False
 
 
-class KeyButton(QtWidgets.QPushButton):
+class KeyButton(QtWidgets.QToolButton):
     shift_flag = False
     capslock_flag = False
+    ctrl_flag = False
+    alt_flag = False
 
     def __init__(self, parent=None, name='', width=50, height=50, scale=1):
         super(KeyButton, self).__init__(parent)
@@ -27,22 +30,28 @@ class KeyButton(QtWidgets.QPushButton):
         if key_text == 'capslock':
             if KeyButton.capslock_flag is True:
                 KeyButton.capslock_flag = False
-                self.setStyleSheet('''background-color: rgb(192,192,192);
+                self.setStyleSheet('''background-color: rgb(235,235,235);
                                     color: black''')
             else:
                 KeyButton.capslock_flag = True
-                self.setStyleSheet('''background-color: rgb(10,206,10);
-                                   color:white''')
+                self.setStyleSheet('''color: white;
+                background-color: qconicalgradient(cx:0.5, cy:0.522909, angle:179.9,
+                                    stop:0.494318 rgba(0, 85, 255, 255),
+                                    stop:0.5 rgba(50, 120, 255, 255));
+                                    border-color:#0039b0;''')
 
         if key_text == 'shift':
             if KeyButton.shift_flag is True:
                 KeyButton.shift_flag = False
-                self.setStyleSheet('''background-color: rgb(192,192,192);
+                self.setStyleSheet('''background-color: rgb(235,235,235);
                                     color: black''')
             else:
                 KeyButton.shift_flag = True
-                self.setStyleSheet('''background-color: rgb(10,206,10);
-                                   color:white''')
+                self.setStyleSheet('''color: white;
+                background-color: qconicalgradient(cx:0.5, cy:0.522909, angle:179.9,
+                                    stop:0.494318 rgba(0, 85, 255, 255),
+                                    stop:0.5 rgba(50, 120, 255, 255));
+                                    border-color:#0039b0;''')
 
         if '\n' in key_text:
             if '&&' in key_text:
@@ -66,7 +75,7 @@ class Keyboard(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super(Keyboard, self).__init__(parent)
         self._config = loadJson()
-        self.keyboardWidth = self._config['keyboard']['width']  
+        self.keyboardWidth = self._config['keyboard']['width']
         self.keyboardHeight = self._config['keyboard']['height']
         self.initUI()
 
@@ -74,8 +83,8 @@ class Keyboard(QtWidgets.QWidget):
         self.createLayout()
         self.createKeyButtons()
         self.setFixedSize(self.keyboardWidth, self.keyboardHeight)
-        self.functionBtnGroup.buttons()[13].clicked.connect(
-            lambda: self.close())
+        # self.functionBtnGroup.buttons()[13].clicked.connect(
+        # lambda: self.close())
 
     def createLayout(self):
         self.hbox = QtWidgets.QHBoxLayout()
@@ -136,18 +145,30 @@ class Keyboard(QtWidgets.QWidget):
         for index, key_name in enumerate(self._config['keys']['row2']):
             button = KeyButton(name=key_name.capitalize())
             self.rowOneBtnGroup.addButton(button)
+            if key_name == "tab":
+                button.setFixedWidth(button.sizeHint().width() * 2)
             self.grid2.addWidget(button, 0, index)
 
         self.rowThreeBtnGroup = QtWidgets.QButtonGroup()
         for index, key_name in enumerate(self._config['keys']['row3']):
             button = KeyButton(name=key_name.capitalize())
             self.rowOneBtnGroup.addButton(button)
+            if key_name == "enter":
+                button.setFixedWidth(button.sizeHint().width() * 2)
+            if key_name == "capslock":
+                button.setFixedWidth(button.sizeHint().width() * 6 / 5)
             self.grid3.addWidget(button, 0, index)
 
         self.rowFourBtnGroup = QtWidgets.QButtonGroup()
         for index, key_name in enumerate(self._config['keys']['row4']):
             button = KeyButton(name=key_name.capitalize())
             self.rowOneBtnGroup.addButton(button)
+            if key_name == "shift":
+                button.setFixedWidth(button.sizeHint().width() * 2)
+            if key_name == "home":
+                button.setFixedWidth(button.sizeHint().width() * 6 / 5)
+            if key_name == "end":
+                button.setFixedWidth(button.sizeHint().width() * 3 / 2)
             self.grid4.addWidget(button, 0, index)
 
         self.rowFiveBtnGroup = QtWidgets.QButtonGroup()
@@ -155,7 +176,11 @@ class Keyboard(QtWidgets.QWidget):
             button = KeyButton(name=key_name.capitalize())
             self.rowOneBtnGroup.addButton(button)
             if key_name == "space":
-                button.setFixedWidth(200)
+                button.setFixedWidth(button.sizeHint().width() * 4)
+            if key_name == "ctrl":
+                button.setFixedWidth(button.sizeHint().width() * 2)
+            if key_name == "delete":
+                button.setFixedWidth(button.sizeHint().width() * 6 / 5)
             self.grid5.addWidget(button, 0, index)
 
     def createSysEditNavigationButtons(self):

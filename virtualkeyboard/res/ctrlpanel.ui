@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>897</width>
-    <height>298</height>
+    <width>900</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -16,51 +16,426 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>999999</width>
+    <height>999999</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="layoutWidget">
+  <widget class="QToolButton" name="F11">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>891</width>
-     <height>291</height>
+     <x>774</x>
+     <y>20</y>
+     <width>120</width>
+     <height>50</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,3,2,3">
-    <property name="leftMargin">
-     <number>6</number>
-    </property>
-    <property name="topMargin">
-     <number>6</number>
-    </property>
-    <property name="rightMargin">
-     <number>6</number>
-    </property>
-    <property name="bottomMargin">
-     <number>6</number>
-    </property>
-    <item>
-     <widget class="QGroupBox" name="groupBox">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="title">
-       <string>spindelCtrl</string>
-      </property>
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>10</y>
-         <width>168</width>
-         <height>261</height>
-        </rect>
-       </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>120</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>120</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Droid Sans Fallback</family>
+     <pointsize>16</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::NoContextMenu</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolButton {
+	color: white;
+	background-color: rgb(0, 110, 0);
+	border-color: rgb(0, 132, 0);
+    border-width: 1px;
+	font: bold 16pt;
+}
+
+QToolButton:hover {  
+	background-color: rgb(0, 153, 0);
+	border-color: rgb(0, 132, 0);
+    border-width: 1px;
+}
+
+QToolButton:pressed {  
+	background-color: rgb(0, 72, 0);
+	border-color: rgb(0, 132, 0);
+    border-width: 1px;
+}
+
+
+</string>
+   </property>
+   <property name="text">
+    <string>开始</string>
+   </property>
+   <property name="clicked_cmd" stdset="0">
+    <cstring>start()</cstring>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="F12">
+   <property name="geometry">
+    <rect>
+     <x>774</x>
+     <y>160</y>
+     <width>120</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>120</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>120</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolButton {
+	color: white;
+	background-color: rgb(170, 0, 0);
+	border-color: rgb(240, 0, 0);
+    border-width: 1px;
+	font: bold 16pt;
+}
+
+QToolButton:hover {  	
+	background-color: rgb(225, 0, 0);
+	border-color: rgb(240, 0, 0);
+    border-width: 1px;
+}
+
+QToolButton:pressed {  
+	background-color: rgb(139, 0, 0);
+	border-color: rgb(240, 0, 0);
+    border-width: 1px;
+}</string>
+   </property>
+   <property name="text">
+    <string>停止</string>
+   </property>
+   <property name="clicked_cmd" stdset="0">
+    <cstring>userStop()</cstring>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="toolButton_12">
+   <property name="geometry">
+    <rect>
+     <x>774</x>
+     <y>240</y>
+     <width>120</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>120</width>
+     <height>50</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>120</width>
+     <height>50</height>
+    </size>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolButton {
+	color: white;
+	background-color: rgb(255, 150, 30);
+	border-color: rgb(255, 150, 30);
+    border-width: 1px;
+	font: bold 16pt;
+}
+
+QToolButton:hover {  	
+	background-color: rgb(255, 206, 6);
+	border-color: rgb(255, 206, 6);
+    border-width: 1px;
+}
+
+QToolButton:pressed {  
+	background-color: rgb(255, 170, 0);
+	border-color: rgb(255, 170, 0);
+    border-width: 1px;
+}</string>
+   </property>
+   <property name="text">
+    <string>暂停</string>
+   </property>
+   <property name="clicked_cmd" stdset="0">
+    <cstring>userPause()</cstring>
+   </property>
+  </widget>
+  <widget class="QStackedWidget" name="stackedWidget">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>10</y>
+     <width>641</width>
+     <height>281</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="currentIndex">
+    <number>1</number>
+   </property>
+   <widget class="QWidget" name="page1">
+    <widget class="QGroupBox" name="groupBox_7">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>160</width>
+       <height>271</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>programCtrl</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_7">
+        <property name="leftMargin">
+         <number>6</number>
+        </property>
+        <property name="topMargin">
+         <number>6</number>
+        </property>
+        <property name="rightMargin">
+         <number>6</number>
+        </property>
+        <property name="bottomMargin">
+         <number>6</number>
+        </property>
+        <item row="0" column="0">
+         <widget class="QToolButton" name="ToolButton_37">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>单段执行</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>signal_block()</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>G[5]</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QToolButton" name="ToolButton_38">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>手轮引导</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>handwheel_leading()</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>G[11]</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QToolButton" name="ToolButton_39">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>自动对刀</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>auto_presetcutter()</cstring>
+          </property>
+          <property name="enabeld_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QToolButton" name="ToolButton_40">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>选择跳过</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>opt_skip()</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>G[18]</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QToolButton" name="ToolButton_41">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>选择停止</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>opt_stop()</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>R[82, 2]</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>0</y>
+       <width>220</width>
+       <height>271</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>systemCtrl</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
        <layout class="QGridLayout" name="gridLayout">
         <property name="leftMargin">
          <number>6</number>
@@ -74,110 +449,225 @@
         <property name="bottomMargin">
          <number>6</number>
         </property>
-        <item row="0" column="0">
-         <widget class="QPushButton" name="PushButton_1">
+        <property name="spacing">
+         <number>6</number>
+        </property>
+        <item row="1" column="0">
+         <widget class="QToolButton" name="toolButton_8">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>主轴正转</string>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring>basic.mdi('M3')</cstring>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>仿  真</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>showSimulateDialog()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QToolButton" name="toolButton_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>回  零</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>showWindow(HomeDialog)</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QToolButton" name="toolButton_5">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>坐标设定</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>showCoordinateDialog()</cstring>
           </property>
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QPushButton" name="PushButton_2">
+         <widget class="QToolButton" name="toolButton_4">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>主轴定位</string>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring></cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="PushButton_3">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
           </property>
           <property name="text">
-           <string>主轴反转</string>
+           <string>手  动</string>
           </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring>basic.mdi('M4')</cstring>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>showManualDialog()</cstring>
           </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QPushButton" name="PushButton_4">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string> C/S轴切换</string>
-          </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring></cstring>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
           </property>
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QPushButton" name="PushButton_5">
+         <widget class="QToolButton" name="toolButton_10">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>主轴停转</string>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring>basic.mdi('M5')</cstring>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>输入/输出</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>showWindow(IoDialog)</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QToolButton" name="toolButton_7">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>参  数</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>showParameterDialog()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QToolButton" name="toolButton_9">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>刀具</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>showWindow(ToolDialog)</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QToolButton" name="toolButton_11">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>其他功能</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>showUi(&quot;:plugins/others/otherdialog.ui&quot;)</cstring>
           </property>
          </widget>
         </item>
        </layout>
-      </widget>
-     </widget>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="groupBox_2">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="title">
-       <string>toolCtrl</string>
-      </property>
-      <widget class="QWidget" name="layoutWidget_2">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>10</y>
-         <width>249</width>
-         <height>261</height>
-        </rect>
-       </property>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>410</x>
+       <y>0</y>
+       <width>220</width>
+       <height>271</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>fileCtrl</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_6">
+      <item>
        <layout class="QGridLayout" name="gridLayout_2">
         <property name="leftMargin">
          <number>6</number>
@@ -191,142 +681,175 @@
         <property name="bottomMargin">
          <number>6</number>
         </property>
-        <item row="0" column="1">
-         <widget class="QPushButton" name="PushButton_6">
+        <property name="spacing">
+         <number>6</number>
+        </property>
+        <item row="1" column="0">
+         <widget class="QToolButton" name="toolButton_14">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>刀库正转</string>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
           </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring></cstring>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>选定行
+加工</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>slot_setStartLine()</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QPushButton" name="PushButton_17">
+        <item row="0" column="1">
+         <widget class="QToolButton" name="toolButton_13">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>换刀</string>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring></cstring>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>卸载文件</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>basic.logUserOperation(&quot;点击卸载当前文件&quot;)
+basic.unloadProgram()</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
           </property>
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QPushButton" name="PushButton_10">
+         <widget class="QToolButton" name="toolButton_16">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>刀库门</string>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring></cstring>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>断点行
+加工</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>slot_startFromBreakPointself()</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="PushButton_8">
+        <item row="0" column="0">
+         <widget class="QToolButton" name="toolButton_6">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>卸刀</string>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring></cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QPushButton" name="PushButton_16">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
           </property>
           <property name="text">
-           <string>刀库反转</string>
+           <string>文  件</string>
           </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring></cstring>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>selectLoadProgram()</cstring>
           </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="PushButton_9">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>刀库退回</string>
-          </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring></cstring>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
           </property>
          </widget>
         </item>
         <item row="0" column="2">
-         <widget class="QPushButton" name="PushButton_7">
+         <widget class="QToolButton" name="toolButton_15">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>刀库退出</string>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring></cstring>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>编辑文件</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>slot_edit()</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
           </property>
          </widget>
         </item>
        </layout>
-      </widget>
-     </widget>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="groupBox_4">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="title">
-       <string>programCtrl</string>
-      </property>
-      <widget class="QWidget" name="layoutWidget_3">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>10</y>
-         <width>168</width>
-         <height>261</height>
-        </rect>
-       </property>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page3">
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>170</width>
+       <height>271</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>logCtrl</string>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
        <layout class="QGridLayout" name="gridLayout_4">
         <property name="leftMargin">
          <number>6</number>
@@ -340,110 +863,213 @@
         <property name="bottomMargin">
          <number>6</number>
         </property>
+        <property name="spacing">
+         <number>6</number>
+        </property>
         <item row="0" column="0">
-         <widget class="QPushButton" name="PushButton_18">
+         <widget class="QToolButton" name="toolButton_21">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>单段执行</string>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
-          <property name="btn_cmd" stdset="0">
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>导出日志</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
            <cstring></cstring>
           </property>
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QPushButton" name="PushButton_19">
+         <widget class="QToolButton" name="toolButton_19">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>选择跳过</string>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
-          <property name="btn_cmd" stdset="0">
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>清楚日志</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
            <cstring></cstring>
           </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QPushButton" name="PushButton_21">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>选择停止</string>
-          </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring></cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="PushButton_20">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>手轮引导</string>
-          </property>
-          <property name="btn_cmd" stdset="0">
+          <property name="enabled_cmd" stdset="0">
            <cstring></cstring>
           </property>
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QPushButton" name="PushButton_22">
+         <widget class="QToolButton" name="toolButton_20">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>自动对刀</string>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
-          <property name="btn_cmd" stdset="0">
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>显示警告</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QToolButton" name="toolButton_18">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>显示错误</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QToolButton" name="toolButton_22">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>显示提示</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QToolButton" name="toolButton_28">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>显示调试</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
            <cstring></cstring>
           </property>
          </widget>
         </item>
        </layout>
-      </widget>
-     </widget>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="groupBox_3">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="title">
-       <string>machineCtrl</string>
-      </property>
-      <widget class="QWidget" name="layoutWidget_4">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>10</y>
-         <width>251</width>
-         <height>261</height>
-        </rect>
-       </property>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_4">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>0</y>
+       <width>301</width>
+       <height>271</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>simulationCtrl</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_8">
+      <item>
        <layout class="QGridLayout" name="gridLayout_5">
         <property name="leftMargin">
          <number>6</number>
@@ -457,125 +1083,1654 @@
         <property name="bottomMargin">
          <number>6</number>
         </property>
-        <item row="0" column="0">
-         <widget class="QPushButton" name="PushButton_29">
+        <property name="horizontalSpacing">
+         <number>4</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>6</number>
+        </property>
+        <item row="1" column="3">
+         <widget class="QToolButton" name="toolButton_32">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>润滑</string>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
-          <property name="btn_cmd" stdset="0">
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>前视图</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
            <cstring></cstring>
           </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QPushButton" name="PushButton_23">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>机床吹气</string>
-          </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring></cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2">
-         <widget class="QPushButton" name="PushButton_26">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>冷却</string>
-          </property>
-          <property name="btn_cmd" stdset="0">
-           <cstring></cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QPushButton" name="PushButton_24">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>排屑反转</string>
-          </property>
-          <property name="btn_cmd" stdset="0">
+          <property name="enabled_cmd" stdset="0">
            <cstring></cstring>
           </property>
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QPushButton" name="PushButton_28">
+         <widget class="QToolButton" name="toolButton_30">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>排屑正转</string>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
-          <property name="btn_cmd" stdset="0">
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>俯视图</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
            <cstring></cstring>
           </property>
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QPushButton" name="PushButton_25">
+         <widget class="QToolButton" name="toolButton_23">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>照明</string>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
           </property>
-          <property name="btn_cmd" stdset="0">
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>轴视图</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QToolButton" name="toolButton_24">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>适合工件</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
            <cstring></cstring>
           </property>
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QPushButton" name="PushButton_27">
+         <widget class="QToolButton" name="toolButton_25">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="text">
-           <string>排屑停止</string>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
-          <property name="btn_cmd" stdset="0">
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>程序模态</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QToolButton" name="toolButton_26">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>清空</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QToolButton" name="toolButton_27">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>适合
+工作台</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QToolButton" name="toolButton_31">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>左视图</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QToolButton" name="toolButton_33">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>运动速度</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QToolButton" name="toolButton_34">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>限控模式</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3">
+         <widget class="QToolButton" name="toolButton_35">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>限控阶段</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QToolButton" name="toolButton_37">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>标尺</string>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring></cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
            <cstring></cstring>
           </property>
          </widget>
         </item>
        </layout>
-      </widget>
-     </widget>
-    </item>
-   </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page2">
+    <widget class="QGroupBox" name="groupBox_8">
+     <property name="geometry">
+      <rect>
+       <x>410</x>
+       <y>0</y>
+       <width>220</width>
+       <height>271</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>machineCtrl</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_8">
+        <property name="leftMargin">
+         <number>6</number>
+        </property>
+        <property name="topMargin">
+         <number>6</number>
+        </property>
+        <property name="rightMargin">
+         <number>6</number>
+        </property>
+        <property name="bottomMargin">
+         <number>6</number>
+        </property>
+        <item row="2" column="1">
+         <widget class="QToolButton" name="ToolButton_42">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>排屑反转</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/排屑反转.png</normaloff>Icon/排屑反转.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>chip_work(2)</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>chip_work_status(2)</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QToolButton" name="ToolButton_43">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>机床吹气</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/机床吹气.png</normaloff>Icon/机床吹气.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>open_blow()</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>blow_is_on()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QToolButton" name="ToolButton_44">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>排屑停止</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/排屑停转.png</normaloff>Icon/排屑停转.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>chip_work(0)</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>chip_work_status(0)</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QToolButton" name="ToolButton_45">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>冷却</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/08.png</normaloff>Icon/08.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>openCool()</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>cool_is_on()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QToolButton" name="ToolButton_46">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>排屑正转</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/排屑正转.png</normaloff>Icon/排屑正转.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>chip_work(1)</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>chip_work_status(1)</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QToolButton" name="ToolButton_47">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>润滑</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/09.png</normaloff>Icon/09.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>openLube()</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>lube_is_on()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QToolButton" name="ToolButton_48">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>照明</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/10.png</normaloff>Icon/10.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>openLight()</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>light_is_on()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QToolButton" name="toolButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>回固定点</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/回固定点.png</normaloff>Icon/回固定点.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>mdi(&quot;G65 P&lt;R951_2&gt;&quot;)</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QToolButton" name="toolButton_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>回工件
+原点</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/回工件原点.png</normaloff>Icon/回工件原点.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>mdi(&quot;G65 P&lt;R951_3&gt;&quot;)</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>0</y>
+       <width>160</width>
+       <height>271</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>spindelCtrl</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <property name="leftMargin">
+         <number>6</number>
+        </property>
+        <property name="topMargin">
+         <number>6</number>
+        </property>
+        <property name="rightMargin">
+         <number>6</number>
+        </property>
+        <property name="bottomMargin">
+         <number>6</number>
+        </property>
+        <item row="1" column="0">
+         <widget class="QToolButton" name="ToolButton_11">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>主轴反转</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/主轴反转.png</normaloff>Icon/主轴反转.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>open_spindle(1)</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>spindle_status(1)</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QToolButton" name="ToolButton_12">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>主轴回零</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/主轴回零.png</normaloff>Icon/主轴回零.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>spindle_position()</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QToolButton" name="ToolButton_13">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>主轴停转</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/主轴停转.png</normaloff>Icon/主轴停转.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>stop_spindle()</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>stop_spindle_status()</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QToolButton" name="ToolButton_14">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>主轴正转</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/主轴正转.png</normaloff>Icon/主轴正转.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>open_spindle(0)</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>spindle_status(0)</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QToolButton" name="ToolButton_15">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string> C/S轴
+ 切换</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/CS轴切换.png</normaloff>Icon/CS轴切换.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>spindle_switch()</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_6">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>0</y>
+       <width>220</width>
+       <height>271</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>toolCtrl</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <layout class="QGridLayout" name="gridLayout_6">
+        <property name="leftMargin">
+         <number>6</number>
+        </property>
+        <property name="topMargin">
+         <number>6</number>
+        </property>
+        <property name="rightMargin">
+         <number>6</number>
+        </property>
+        <property name="bottomMargin">
+         <number>6</number>
+        </property>
+        <item row="1" column="1">
+         <widget class="QToolButton" name="ToolButton_30">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>刀库反转</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/刀库反转.png</normaloff>Icon/刀库反转.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="autoRepeat">
+           <bool>false</bool>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="pressed_cmd" stdset="0">
+           <cstring>magazine_work_pressed(1)</cstring>
+          </property>
+          <property name="released_cmd" stdset="0">
+           <cstring>magazine_work_releassed(1)</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QToolButton" name="ToolButton_31">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>换  刀</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/换刀.png</normaloff>Icon/换刀.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>onChangetheknife()</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QToolButton" name="ToolButton_32">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>刀库退回</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/刀库退出退回-01.png</normaloff>Icon/刀库退出退回-01.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>magazine_IO(1)</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QToolButton" name="ToolButton_33">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>刀库正转</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/刀库正转.png</normaloff>Icon/刀库正转.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="autoRepeat">
+           <bool>false</bool>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="pressed_cmd" stdset="0">
+           <cstring>magazine_work_pressed(0)</cstring>
+          </property>
+          <property name="released_cmd" stdset="0">
+           <cstring>magazine_work_releassed(0)</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QToolButton" name="ToolButton_34">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>卸  刀</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/卸刀.png</normaloff>Icon/卸刀.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>onPineknife()</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QToolButton" name="ToolButton_35">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>刀库推出</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/刀库退出退回-01.png</normaloff>Icon/刀库退出退回-01.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>magazine_IO(0)</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QToolButton" name="ToolButton_36">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>刀库门</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>Icon/刀库门.png</normaloff>Icon/刀库门.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>onknifelibraryopen()</cstring>
+          </property>
+          <property name="checked_cmd" stdset="0">
+           <cstring>magazineDoor_status()</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QToolButton" name="ToolButton_26">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>8</pointsize>
+            <weight>75</weight>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QToolButton {
+	font: bold 8pt;
+}</string>
+          </property>
+          <property name="text">
+           <string>刀库复位</string>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>32</width>
+            <height>32</height>
+           </size>
+          </property>
+          <property name="toolButtonStyle">
+           <enum>Qt::ToolButtonTextUnderIcon</enum>
+          </property>
+          <property name="clicked_cmd" stdset="0">
+           <cstring>R[645] = 1</cstring>
+          </property>
+          <property name="enabled_cmd" stdset="0">
+           <cstring>operationAuthority()</cstring>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QToolButton" name="sys_ctrl">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>91</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolButton {
+	font: bold 12pt;
+}</string>
+   </property>
+   <property name="text">
+    <string>系统操作</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="machine_ctrl">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>140</y>
+     <width>91</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolButton {
+	font: bold 12pt;
+}</string>
+   </property>
+   <property name="text">
+    <string>机床操作</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="closeBtn">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>250</y>
+     <width>91</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="sys_ctrl_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>91</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolButton {
+	font: bold 12pt;
+}</string>
+   </property>
+   <property name="text">
+    <string>软件操作</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections/>
 </ui>

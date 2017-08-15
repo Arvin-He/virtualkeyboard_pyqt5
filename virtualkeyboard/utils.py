@@ -106,10 +106,10 @@ def _loadRes(res, root):
 
 
 # 加载资源
-for path, b, c in os.walk(_res_path):
-    if path.endswith(os.path.sep + "res"):
-        print("path=", _res_path)
-        _loadRes(path, _res_path)
+# for path, b, c in os.walk(_res_path):
+#     if path.endswith(os.path.sep + "res"):
+#         print("path=", _res_path)
+#         _loadRes(path, _res_path)
 
 # 加载翻译
 # _translator_base = QtCore.QTranslator()
