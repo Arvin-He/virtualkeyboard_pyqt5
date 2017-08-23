@@ -7,7 +7,7 @@ from PyQt5 import uic
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
 from utils import loadJson
-from punggol_rpc import punggol_exec, punggol_eval
+from _rpc import _exec, _eval
 
 
 class ControlPanel(QtWidgets.QWidget):
@@ -70,14 +70,14 @@ class ControlPanel(QtWidgets.QWidget):
                 if str(btn.property("checked_cmd")) != "":
                     btn.setCheckable(True)
                     try:
-                        result = punggol_eval(btn.property("checked_cmd"))
+                        result = _eval(btn.property("checked_cmd"))
                         btn.setChecked(bool(result))
                     except BaseException as e:
                         return
             if btn.property("enabled_cmd") is not None:
                 if str(btn.property("enabled_cmd")) != "":
                     try:
-                        result = punggol_eval(btn.property("enabled_cmd"))
+                        result = _eval(btn.property("enabled_cmd"))
                         btn.setEnabled(bool(result))
                     except BaseException as e:
                         return
@@ -86,8 +86,9 @@ class ControlPanel(QtWidgets.QWidget):
         if btn.isDown():
             if btn._repeate is False:
                 btn._repeate = True
-                btn.setAutoRepeatInterval(30)
+                btn.setAutoRepeatInterval(50)
                 btn.setAutoRepeatDelay(0)
+                self.on_pressed(btn)
             else:
                 self.on_pressed(btn)
         elif btn._repeate is True:
@@ -99,29 +100,29 @@ class ControlPanel(QtWidgets.QWidget):
     def on_clicked(self, btn):
         try:
             if btn.property("clicked_cmd") is not None:
-                punggol_exec(btn.property("clicked_cmd"))
+                _exec(btn.property("clicked_cmd"))
             else:
                 if btn.property("pressed_cmd") is not None:
-                    punggol_exec(btn.property("pressed_cmd"))
+                    _exec(btn.property("pressed_cmd"))
                 time.sleep(0.05)
                 if btn.property("released_cmd") is not None:
-                    punggol_exec(btn.property("released_cmd"))
-        except Exception as e:
+                    _exec(btn.property("released_cmd"))
+        except BaseException as e:
             print(e)
             return
 
     def on_pressed(self, btn):
         try:
             if btn.property("pressed_cmd") is not None:
-                punggol_exec(btn.property("pressed_cmd"))
-        except Exception as e:
+                _exec(btn.property("pressed_cmd"))
+        except BaseException as e:
             print(e)
             return
 
     def on_released(self, btn):
         try:
             if btn.property("released_cmd") is not None:
-                punggol_exec(btn.property("released_cmd"))
-        except Exception as e:
+                _exec(btn.property("released_cmd"))
+        except BaseException as e:
             print(e)
             return

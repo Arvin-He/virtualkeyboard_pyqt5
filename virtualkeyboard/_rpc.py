@@ -29,7 +29,7 @@ class _Connection:
         return self._socket.recv(65536)
 
 
-def punggol_eval(script, timeout=5):
+def _eval(script, timeout=5):
     with _Connection.get() as connection:
         with gevent.Timeout(timeout):
             result = connection.request(b"EVAL\n" + script.encode())
@@ -40,7 +40,7 @@ def punggol_eval(script, timeout=5):
     return ast.literal_eval(result[3:].decode())
 
 
-def punggol_exec(script, timeout=5):
+def _exec(script, timeout=5):
     with _Connection.get() as connection:
         with gevent.Timeout(timeout):
             result = connection.request(b"EXEC\n" + script.encode())
